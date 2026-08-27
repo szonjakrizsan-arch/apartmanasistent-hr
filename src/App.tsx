@@ -18,10 +18,10 @@ import { useApartments } from "./hooks/useApartments";
 import { ApartmentsScreen } from "./screens/ApartmentsScreen";
 import { supabase } from "./supabaseClient";
 
-// Wenn true: nach der Registrierung kann sich der Nutzer erst anmelden,
-// wenn Sie das Feld profiles.approved in Supabase manuell bestätigen.
-// Wenn false: jeder kommt sofort hinein.
-// Wieder auf true schalten, falls erneut nötig (z. B. bei vielen Spam-Registrierungen).
+// Ako je true: nakon registracije korisnik se može prijaviti tek kada
+// polje profiles.approved ručno potvrdite u Supabaseu.
+// Ako je false: svatko dobiva pristup odmah.
+// Vratiti na true ako ponovno bude potrebno (npr. kod puno spam registracija).
 const REQUIRE_APPROVAL = false;
 
 export default function App() {
@@ -39,9 +39,9 @@ export default function App() {
 
   useEffect(() => {
     if (!user) { setApproved(null); return; }
-    /* Nur wenn die Freischaltung tatsaechlich geprueft wird, blockieren wir
-       die Oberflaeche. Sonst laeuft die Abfrage im Hintergrund - so wird die
-       App bei einem Token-Refresh (Tab-Wechsel) nicht neu aufgebaut. */
+    /* Sučelje blokiramo samo ako se odobrenje stvarno provjerava. Inače
+       upit se izvršava u pozadini — tako se aplikacija ne ponovno gradi
+       kod osvježenja tokena (promjena kartice preglednika). */
     if (REQUIRE_APPROVAL) setApprovedLoading(true);
     supabase.from("profiles").select("approved").eq("id", user.id).single()
       .then(({ data }) => {
@@ -57,7 +57,7 @@ export default function App() {
   if (loading || approvedLoading) {
     return (
       <div className="min-h-dvh bg-surface flex items-center justify-center">
-        <p className="text-text-muted text-[13px]">Wird geladen...</p>
+        <p className="text-text-muted text-[13px]">Učitavanje...</p>
       </div>
     );
   }
@@ -78,14 +78,14 @@ export default function App() {
             style={{ background: "rgb(99 190 162 / 0.15)", outline: "1px solid rgb(99 190 162 / 0.25)" }}>
             <span className="text-2xl">🔐</span>
           </div>
-          <h1 className="text-[18px] font-bold text-text-primary">Warten auf Freischaltung</h1>
+          <h1 className="text-[18px] font-bold text-text-primary">Čekanje odobrenja</h1>
           <p className="text-[13px] text-text-secondary leading-relaxed">
-            Ihr Konto wurde registriert, ist aber noch nicht freigeschaltet. Wir melden uns in Kürze!
+            Vaš račun je registriran, ali još nije odobren. Javit ćemo vam se uskoro!
           </p>
           <button type="button"
             onClick={() => supabase.auth.signOut()}
             className="mt-2 text-[12px] text-text-muted underline">
-            Abmelden
+            Odjava
           </button>
         </div>
       </div>
@@ -101,14 +101,14 @@ export default function App() {
           <div className="mx-auto w-full max-w-2xl px-4 md:px-8">
             <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-xl px-4 py-2.5 text-[13px]"
               style={{ background: "rgb(216 185 104 / 0.22)", color: "#f0cb5e", outline: "1px solid rgb(216 185 104 / 0.45)" }}>
-              <span className="font-bold">Sie befinden sich im Demo-Modus — dies sind fiktive Daten.</span>
+              <span className="font-bold">Nalazite se u demo načinu rada — ovo su izmišljeni podaci.</span>
               <button type="button" onClick={async () => {
                 await deleteDemoApartments();
                 setTab("apartments");
                 setJustRemovedDemo(true);
               }}
                 className="pressable font-semibold underline underline-offset-2">
-                Demo-Daten löschen und eigene Unterkunft hinzufügen
+                Obriši demo podatke i dodaj vlastiti apartman
               </button>
             </div>
           </div>
