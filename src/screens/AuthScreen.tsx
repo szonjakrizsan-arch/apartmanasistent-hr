@@ -25,31 +25,31 @@ export function AuthScreen() {
 
     if (mode === "login") {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) setError("E-Mail-Adresse oder Passwort ist falsch.");
+      if (error) setError("E-mail adresa ili lozinka nije točna.");
 
     } else if (mode === "register") {
-      if (!name.trim()) { setError("Bitte geben Sie Ihren Namen ein."); setLoading(false); return; }
-      if (!accepted) { setError("Um sich zu registrieren, müssen Sie die Bedingungen akzeptieren."); setLoading(false); return; }
+      if (!name.trim()) { setError("Unesite svoje ime."); setLoading(false); return; }
+      if (!accepted) { setError("Za registraciju morate prihvatiti uvjete."); setLoading(false); return; }
       const { data, error } = await supabase.auth.signUp({
         email, password,
         options: {
-          data: { display_name: name, market: "de" },
+          data: { display_name: name, market: "hr" },
           emailRedirectTo: window.location.origin,
         }
       });
-      if (error) setError("Registrierung fehlgeschlagen: " + error.message);
+      if (error) setError("Registracija nije uspjela: " + error.message);
       else if (data.user && data.user.identities && data.user.identities.length === 0) {
-        setError("Diese E-Mail-Adresse ist bereits registriert. Bitte melden Sie sich an oder setzen Sie Ihr Passwort zurück.");
+        setError("Ova e-mail adresa je već registrirana. Prijavite se ili resetirajte lozinku.");
       } else {
-        setSuccess("Registrierung erfolgreich! Sie können sofort loslegen.");
+        setSuccess("Registracija uspješna! Možete odmah započeti.");
         trackRegistrationComplete();
         trackRegistrationConversion();
       }
 
     } else if (mode === "forgot") {
       const { error } = await supabase.auth.resetPasswordForEmail(email);
-      if (error) setError("Fehler: " + error.message);
-      else setSuccess("E-Mail zum Zurücksetzen des Passworts wurde gesendet!");
+      if (error) setError("Greška: " + error.message);
+      else setSuccess("E-mail za resetiranje lozinke je poslan!");
     }
 
     setLoading(false);
@@ -70,39 +70,39 @@ export function AuthScreen() {
             <Home className="h-6 w-6" style={{ color: "#63bea2" }} />
           </span>
           <div className="text-center">
-            <h1 className="text-[18px] font-bold text-text-primary">Apartment Assistant</h1>
-            <p className="text-[12px] text-text-muted mt-0.5">Verwaltungssystem für Ferienwohnungen</p>
+            <h1 className="text-[18px] font-bold text-text-primary">Apartman Asistent</h1>
+            <p className="text-[12px] text-text-muted mt-0.5">Sustav za upravljanje apartmanima</p>
           </div>
         </div>
 
         {/* Card */}
         <div className="card-elevated rounded-2xl p-6 flex flex-col gap-4">
           <h2 className="text-[15px] font-semibold text-text-primary">
-            {mode === "login" ? "Anmeldung" : mode === "register" ? "Registrierung" : "Passwort zurücksetzen"}
+            {mode === "login" ? "Prijava" : mode === "register" ? "Registracija" : "Resetiranje lozinke"}
           </h2>
 
           {mode === "register" && (
             <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-              placeholder="Vollständiger Name"
+              placeholder="Puno ime"
               className="w-full rounded-xl border bg-surface-inset px-4 py-3 text-[13px] text-text-primary outline-none input-teal"
               style={{ borderColor: "rgb(86 176 187 / 0.25)" }} />
           )}
 
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-Mail-Adresse"
+            placeholder="E-mail adresa"
             className="w-full rounded-xl border bg-surface-inset px-4 py-3 text-[13px] text-text-primary outline-none input-teal"
             style={{ borderColor: "rgb(86 176 187 / 0.25)" }} />
 
           {mode !== "forgot" && (
             <div className="relative">
               <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)}
-                placeholder="Passwort"
+                placeholder="Lozinka"
                 className="w-full rounded-xl border bg-surface-inset px-4 py-3 pr-12 text-[13px] text-text-primary outline-none input-teal"
                 style={{ borderColor: "rgb(86 176 187 / 0.25)" }} />
               <button type="button" onClick={() => setShowPassword((v) => !v)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-1"
                 style={{ color: "rgb(143 168 158 / 0.8)" }}
-                aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}>
+                aria-label={showPassword ? "Sakrij lozinku" : "Prikaži lozinku"}>
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
             </div>
@@ -113,13 +113,12 @@ export function AuthScreen() {
               <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)}
                 className="mt-0.5 h-4 w-4 shrink-0 accent-[#56b0bb]" />
               <span className="text-[12px] leading-relaxed text-text-secondary">
-                Ich habe die{" "}
+                Pročitao/la sam i prihvaćam{" "}
                 <button type="button" onClick={() => setLegalDoc("terms")}
-                  className="underline" style={{ color: "#56b0bb" }}>AGB</button>
-                {" "}und die{" "}
+                  className="underline" style={{ color: "#56b0bb" }}>Opće uvjete</button>
+                {" "}i{" "}
                 <button type="button" onClick={() => setLegalDoc("privacy")}
-                  className="underline" style={{ color: "#56b0bb" }}>Datenschutzerklärung</button>{" "}
-                gelesen und akzeptiere sie.
+                  className="underline" style={{ color: "#56b0bb" }}>Izjavu o zaštiti podataka</button>.
               </span>
             </label>
           )}
@@ -138,7 +137,7 @@ export function AuthScreen() {
           <button type="button" onClick={handleSubmit} disabled={loading}
             className="pressable w-full rounded-xl py-3 text-[13px] font-semibold transition-soft"
             style={{ background: "rgb(86 176 187 / 0.20)", color: "#56b0bb", outline: "1px solid rgb(86 176 187 / 0.30)" }}>
-            {loading ? "..." : mode === "login" ? "Anmelden" : mode === "register" ? "Registrieren" : "Senden"}
+            {loading ? "..." : mode === "login" ? "Prijava" : mode === "register" ? "Registracija" : "Pošalji"}
           </button>
 
           {/* Mode switcher */}
@@ -147,33 +146,33 @@ export function AuthScreen() {
               <>
                 <button type="button" onClick={() => { setMode("register"); setError(""); setSuccess(""); }}
                   className="text-[12px] text-text-secondary hover:text-text-primary transition-soft">
-                  Noch kein Konto? Jetzt registrieren
+                  Nemate račun? Registrirajte se
                 </button>
                 <button type="button" onClick={() => { setMode("forgot"); setError(""); setSuccess(""); }}
                   className="text-[12px] text-text-muted hover:text-text-secondary transition-soft">
-                  Passwort vergessen
+                  Zaboravili ste lozinku
                 </button>
               </>
             )}
             {mode !== "login" && (
               <button type="button" onClick={() => { setMode("login"); setError(""); setSuccess(""); }}
                 className="text-[12px] text-text-secondary hover:text-text-primary transition-soft">
-                Zurück zur Anmeldung
+                Natrag na prijavu
               </button>
             )}
           </div>
         </div>
 
-        {/* Rechtliche Links */}
+        {/* Pravni linkovi */}
         <div className="mt-6 flex items-center justify-center gap-3">
           <button type="button" onClick={() => setLegalDoc("terms")}
-            className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">AGB</button>
+            className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Opći uvjeti</button>
           <span className="text-[11px] text-text-muted" aria-hidden>·</span>
           <button type="button" onClick={() => setLegalDoc("privacy")}
-            className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Datenschutz</button>
+            className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Zaštita podataka</button>
           <span className="text-[11px] text-text-muted" aria-hidden>·</span>
           <button type="button" onClick={() => setLegalDoc("contact")}
-            className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Impressum</button>
+            className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Impresum</button>
         </div>
       </div>
     </div>
