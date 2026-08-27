@@ -4,239 +4,371 @@ export type LegalDoc = "terms" | "privacy" | "contact";
 
 const DOCS: Record<LegalDoc, { title: string; body: string }> = {
   terms: {
-    title: "Allgemeine Geschäftsbedingungen",
+    title: "Opći uvjeti poslovanja",
     body: `
-1. Anbieter
+1. Pružatelj usluge
 
-Name: Dr. Szonja Katalin Krizsán (Privatperson)
-Wohnsitz: Torony, Ungarn
-E-Mail: szonjakrizsan@gmail.com
+Ime: Dr. Szonja Katalin Krizsán (privatna osoba)
+Prebivalište: Torony, Mađarska
+E-mail: szonjakrizsan@gmail.com
 
-2. Gegenstand der Dienstleistung
+2. Predmet usluge
 
-Apartment Assistant ist eine webbasierte Anwendung zur
-Unterstützung von Betreibern von Ferienwohnungen.
-Die Anwendung ermöglicht insbesondere die Zusammenführung von
-Buchungskalendern (iCal) verschiedener Buchungsplattformen sowie
-die Verwaltung von Buchungen, täglichen Aufgaben und
-Gästeinformationen.
-Der Funktionsumfang kann während der Beta-Phase jederzeit
-erweitert, geändert oder eingeschränkt werden.
+Apartman Asistent je web aplikacija namijenjena podršci
+vlasnicima apartmana za iznajmljivanje.
+Aplikacija posebice omogućuje objedinjavanje kalendara
+rezervacija (iCal) s različitih platformi za rezervacije,
+kao i upravljanje rezervacijama, dnevnim zadacima i
+podacima o gostima.
+Opseg funkcija može se tijekom beta faze u bilo kojem
+trenutku proširiti, izmijeniti ili ograničiti.
 
-3. Registrierung und Nutzung
+3. Registracija i korištenje
 
-Die Nutzung der Dienstleistung setzt eine Registrierung voraus.
-Mit der Registrierung bestätigt die Nutzerin bzw. der Nutzer, diese
-Allgemeinen Geschäftsbedingungen sowie die Datenschutzerklärung
-gelesen und akzeptiert zu haben.
-Apartment Assistant befindet sich derzeit in einer kostenlosen
-Beta-Phase.
-Ein kostenpflichtiges Abonnement wird frühestens nach dem
-offiziellen Produktstart eingeführt. Registrierte Nutzer werden
-mindestens 14 Tage vor Einführung kostenpflichtiger Leistungen per
-E-Mail informiert.
+Korištenje usluge pretpostavlja registraciju.
+Registracijom korisnica odnosno korisnik potvrđuje da je
+pročitao/la i prihvatio/la ove Opće uvjete poslovanja te
+Izjavu o zaštiti podataka.
+Apartman Asistent trenutno se nalazi u besplatnoj beta
+fazi.
+Naplatna pretplata bit će uvedena najranije nakon
+službenog pokretanja proizvoda. Registrirani korisnici
+bit će obaviješteni e-poštom najmanje 14 dana prije
+uvođenja naplatnih usluga.
 
-4. Verfügbarkeit der Dienstleistung
+4. Dostupnost usluge
 
-Der Anbieter ist bemüht, die Dienstleistung möglichst
-unterbrechungsfrei bereitzustellen.
-Ein Anspruch auf eine jederzeitige oder fehlerfreie Verfügbarkeit
-besteht jedoch nicht.
-Insbesondere können Wartungsarbeiten, technische Störungen oder
-Einflüsse Dritter die Verfügbarkeit zeitweise einschränken.
+Pružatelj usluge nastoji uslugu pružati što je moguće bez
+prekida.
+Međutim, ne postoji pravo na neprekidnu ili bezgrešnu
+dostupnost.
+Posebice, održavanje, tehnički kvarovi ili utjecaji
+trećih strana mogu privremeno ograničiti dostupnost.
 
-5. Haftung
+5. Odgovornost
 
-Apartment Assistant verarbeitet Daten, die von externen
-Buchungsplattformen (z. B. Airbnb oder Booking.com) über
-iCal-Schnittstellen bereitgestellt werden.
-Für die Vollständigkeit, Aktualität und Richtigkeit dieser Daten
-ist ausschließlich die jeweilige Plattform verantwortlich.
-Soweit gesetzlich zulässig, haftet der Anbieter nicht für Schäden,
-die auf fehlerhafte, unvollständige oder verspätet übermittelte
-Daten der angebundenen Plattformen zurückzuführen sind.
-Die Dienstleistung wird während der Beta-Phase ohne Gewähr und im
-jeweiligen Entwicklungsstand bereitgestellt.
-Die Haftung für Vorsatz und grobe Fahrlässigkeit sowie nach
-zwingenden gesetzlichen Vorschriften bleibt unberührt.
+Apartman Asistent obrađuje podatke koje putem iCal
+sučelja dostavljaju vanjske platforme za rezervacije
+(npr. Airbnb ili Booking.com).
+Za potpunost, ažurnost i točnost tih podataka odgovorna
+je isključivo dotična platforma.
+U mjeri dopuštenoj zakonom, pružatelj usluge ne odgovara
+za štetu nastalu zbog netočnih, nepotpunih ili sa
+zakašnjenjem dostavljenih podataka povezanih platformi.
+Usluga se tijekom beta faze pruža u razvojnoj fazi, zbog
+čega može doći do tehničkih pogrešaka, privremenih
+ograničenja ili promjena pojedinih funkcionalnosti. To ne
+utječe na prava korisnika koja proizlaze iz obveznih
+zakonskih propisa.
+Odgovornost za namjeru i grubu nepažnju te odgovornost
+prema obveznim zakonskim propisima ostaje nepromijenjena.
 
-6. Kündigung und Löschung des Kontos
+6. Otkazivanje i brisanje računa
 
-Die Nutzerin bzw. der Nutzer kann das Benutzerkonto jederzeit ohne
-Angabe von Gründen löschen.
-Mit der Löschung des Kontos werden sämtliche gespeicherten
-personenbezogenen Daten gelöscht, soweit keine gesetzlichen
-Aufbewahrungspflichten entgegenstehen.
+Korisnica odnosno korisnik može u bilo kojem trenutku bez
+navođenja razloga obrisati korisnički račun.
+Brisanjem računa brišu se svi pohranjeni osobni podaci,
+osim ako tome ne stoje na putu zakonske obveze čuvanja.
 
-7. Änderungen dieser AGB
+7. Izmjene ovih Općih uvjeta
 
-Der Anbieter behält sich vor, diese Allgemeinen
-Geschäftsbedingungen anzupassen, sofern dies aufgrund technischer,
-rechtlicher oder organisatorischer Änderungen erforderlich ist.
-Über wesentliche Änderungen werden registrierte Nutzer rechtzeitig
-per E-Mail informiert.
+Pružatelj usluge zadržava pravo prilagodbe ovih Općih
+uvjeta poslovanja, ako je to potrebno zbog tehničkih,
+pravnih ili organizacijskih promjena.
+O bitnim izmjenama registrirani korisnici bit će
+pravovremeno obaviješteni e-poštom.
 
-8. Anwendbares Recht
+8. Mjerodavno pravo
 
-Für diese Nutzungsbedingungen gilt das Recht Ungarns unter
-Ausschluss des UN-Kaufrechts, soweit dem keine zwingenden
-gesetzlichen Verbraucherschutzvorschriften entgegenstehen.
+Za ove uvjete korištenja mjerodavno je pravo Mađarske, uz
+isključenje Bečke konvencije o međunarodnoj prodaji robe,
+osim ako se tome ne protive obvezni zakonski propisi o
+zaštiti potrošača.
 
-9. Schlussbestimmungen
+9. Završne odredbe
 
-Sollten einzelne Bestimmungen dieser Allgemeinen
-Geschäftsbedingungen ganz oder teilweise unwirksam sein oder
-werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
+Ako pojedine odredbe ovih Općih uvjeta poslovanja u
+cijelosti ili djelomično postanu nevažeće, valjanost
+preostalih odredbi ostaje nepromijenjena.
 
-Gültig ab: Juni 2026
+Vrijedi od: lipnja 2026.
 `,
   },
   privacy: {
-    title: "Datenschutzerklärung",
+    title: "Izjava o zaštiti podataka",
     body: `
-1. Verantwortliche Stelle
+1. Voditelj obrade
 
-Name: Dr. Szonja Katalin Krizsán
-Wohnsitz: Torony, Ungarn
-E-Mail: szonjakrizsan@gmail.com
+Voditelj obrade osobnih podataka u vezi s korištenjem
+usluge Apartman Asistent je:
 
-2. Welche Daten werden verarbeitet?
+Dr. Szonja Katalin Krizsán
+Torony, Mađarska
+E-mail: szonjakrizsan@gmail.com
 
-Im Rahmen der Nutzung von Apartment Assistant können folgende
-personenbezogene Daten verarbeitet werden:
+Za pitanja povezana sa zaštitom osobnih podataka ili za
+ostvarivanje prava ispitanika možete se obratiti na
+navedenu adresu e-pošte.
 
-Kontodaten
-- Name
-- E-Mail-Adresse
-- Passwort (ausschließlich in verschlüsselter Form)
+2. Koje osobne podatke obrađujemo?
 
-Vom Nutzer eingegebene Daten
-- Bezeichnungen der Ferienwohnungen
-- iCal-Kalenderlinks
-- Gästedaten (z. B. Name, Telefonnummer, E-Mail-Adresse)
-- Zahlungsvermerke
-- Aufgaben
-- Notizen
+Ovisno o načinu korištenja usluge, Apartman Asistent može
+obrađivati sljedeće kategorije osobnih podataka:
 
-3. Zweck und Rechtsgrundlage der Verarbeitung
+Podaci povezani s korisničkim računom
+- ime i prezime, ako ih korisnik unese
+- e-mail adresa
+- podaci potrebni za autentifikaciju korisničkog računa
+- podaci o korištenju usluge i tehnički podaci potrebni
+  za sigurnost i rad sustava
 
-Die Verarbeitung personenbezogener Daten erfolgt zur
-Bereitstellung und Nutzung der Dienstleistung Apartment Assistant.
-Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. b DSGVO
-(Vertragserfüllung).
-Soweit Nutzer personenbezogene Daten ihrer Gäste innerhalb der
-Anwendung speichern, erfolgt dies ausschließlich auf ihre eigene
-Verantwortung.
-Die Nutzerin bzw. der Nutzer ist insoweit datenschutzrechtlich
-Verantwortliche(r) im Sinne der DSGVO.
-Apartment Assistant verarbeitet diese Daten ausschließlich im
-Rahmen der technischen Bereitstellung der Anwendung.
+Podaci koje korisnik unosi u aplikaciju
+- naziv i podaci o apartmanu
+- iCal poveznice i podaci povezani s kalendarima
+  rezervacija
+- podaci o rezervacijama
+- podaci o gostima koje korisnik unese u aplikaciju,
+  primjerice ime, telefonski broj i e-mail adresa
+- podaci o plaćanju i napomenama
+- zadaci, bilješke i drugi sadržaj koji korisnik unese u
+  aplikaciju
 
-4. Auftragsverarbeiter
+Apartman Asistent ne zahtijeva unos posebnih kategorija
+osobnih podataka. Korisnici ne bi trebali u aplikaciju
+unositi podatke koji nisu potrebni za korištenje
+pojedinih funkcionalnosti usluge.
 
-Zur Bereitstellung der Dienstleistung werden folgende
-Dienstleister eingesetzt:
+Lozinke korisnika ne pohranjuju se u obliku u kojem bi ih
+Apartman Asistent mogao pročitati. Za autentifikaciju se
+koriste odgovarajući sigurnosni mehanizmi pružatelja
+usluge za autentifikaciju.
 
-- Supabase — Datenbank und Benutzerauthentifizierung
-- Cloudflare — Hosting und technische Infrastruktur
-- Resend — Versand von System-E-Mails
-- Meta Platforms — Erfolgsmessung von Werbekampagnen (Meta Pixel),
-  nur nach vorheriger Einwilligung
+3. Svrhe i pravne osnove obrade
 
-Mit sämtlichen Auftragsverarbeitern bestehen – soweit gesetzlich
-erforderlich – Vereinbarungen zur Auftragsverarbeitung gemäß
-Art. 28 DSGVO.
+Osobne podatke obrađujemo u sljedeće svrhe:
 
-5. Speicherung der Daten
+a) Registracija i upravljanje korisničkim računom
+Podaci potrebni za registraciju, prijavu i upravljanje
+korisničkim računom obrađuju se radi izvršenja ugovora s
+korisnikom, odnosno na temelju članka 6. stavka 1. točke
+b) OUZP-a.
 
-Die Daten werden ausschließlich über verschlüsselte Verbindungen
-übertragen.
-Der Zugriff auf gespeicherte Daten ist ausschließlich der
-jeweiligen Nutzerin bzw. dem jeweiligen Nutzer möglich.
-Personenbezogene Daten werden nur so lange gespeichert, wie dies
-für die Bereitstellung der Dienstleistung erforderlich ist oder
-gesetzliche Aufbewahrungspflichten bestehen.
+b) Pružanje funkcionalnosti Apartman Asistenta
+Podaci koje korisnik pohranjuje u aplikaciji obrađuju se
+u mjeri potrebnoj za pružanje ugovorenih funkcionalnosti
+usluge, na temelju članka 6. stavka 1. točke b) OUZP-a.
 
-6. Datenübermittlung in Drittländer
+c) Sigurnost, održavanje i stabilnost sustava
+Tehnički podaci i podaci potrebni za zaštitu usluge od
+zlouporabe, neovlaštenog pristupa i sigurnosnih incidenata
+mogu se obrađivati na temelju članka 6. stavka 1. točke f)
+OUZP-a, odnosno na temelju legitimnog interesa voditelja
+obrade za sigurnost i pravilno funkcioniranje usluge.
 
-Soweit einzelne eingesetzte Dienstleister personenbezogene Daten
-außerhalb der Europäischen Union oder des Europäischen
-Wirtschaftsraums verarbeiten, erfolgt dies ausschließlich auf
-Grundlage der von der Europäischen Kommission anerkannten
-geeigneten Garantien gemäß Art. 44 ff. DSGVO.
+d) Ispunjavanje zakonskih obveza
+Ako je obrada potrebna radi ispunjenja zakonske obveze,
+osobni podaci obrađuju se na temelju članka 6. stavka 1.
+točke c) OUZP-a.
 
-7. Rechte der betroffenen Personen
+e) Korištenje alata za mjerenje i oglašavanje
+Ako se koriste tehnologije poput Meta Pixela koje nisu
+nužne za rad usluge, one se aktiviraju samo nakon
+odgovarajuće privole korisnika, kada je takva privola
+potrebna prema primjenjivim propisima.
 
-Betroffene Personen haben insbesondere folgende Rechte:
+4. Podaci o gostima koje unosi korisnik
 
-- Auskunft über die verarbeiteten personenbezogenen Daten
-- Berichtigung unrichtiger Daten
-- Löschung personenbezogener Daten
-- Einschränkung der Verarbeitung
-- Datenübertragbarkeit
-- Widerspruch gegen die Verarbeitung nach Maßgabe der gesetzlichen
-  Vorschriften
+Korisnik može putem Apartman Asistenta pohraniti osobne
+podatke svojih gostiju, primjerice ime, telefonski broj
+ili e-mail adresu.
+U odnosu na takve podatke korisnik koji ih unosi u
+aplikaciju u pravilu određuje svrhe i sredstva obrade te
+je stoga voditelj obrade tih podataka.
+Apartman Asistent te podatke obrađuje kao izvršitelj
+obrade isključivo u mjeri potrebnoj za pružanje
+funkcionalnosti aplikacije i prema uputama korisnika.
+Za takvu obradu primjenjuju se zahtjevi članka 28. OUZP-a.
+Odnos između korisnika kao voditelja obrade i Apartman
+Asistenta kao izvršitelja obrade uređuje se odgovarajućim
+ugovorom ili drugim pravnim aktom o obradi osobnih
+podataka.
+Korisnik je odgovoran za zakonitost unosa i daljnje
+obrade podataka svojih gostiju te za ispunjavanje svojih
+obveza prema ispitanicima.
 
-Zur Ausübung dieser Rechte genügt eine Mitteilung an:
+5. Pružatelji usluga i izvršitelji obrade
+
+Za tehničko pružanje Apartman Asistenta koriste se vanjski
+pružatelji usluga. Oni mogu obrađivati osobne podatke u
+mjeri potrebnoj za pružanje svojih usluga.
+
+Trenutačno se koriste osobito:
+- Supabase — baza podataka i autentifikacija korisnika
+- Cloudflare — hosting, mrežna infrastruktura, sigurnost
+  i tehničke usluge povezane s radom aplikacije
+- Resend — slanje sistemskih e-poruka, primjerice poruka
+  povezanih s korisničkim računom i korištenjem usluge
+- Meta Platforms — Meta Pixel i povezane tehnologije za
+  mjerenje uspješnosti oglašavanja, samo kada je takva
+  obrada dopuštena i, gdje je potrebno, nakon prethodne
+  privole korisnika
+
+Pojedini pružatelji mogu, ovisno o konkretnoj usluzi i
+vrsti obrade, imati različit pravni status prema OUZP-u.
+Kada djeluju kao izvršitelji obrade, obrada se uređuje
+odgovarajućim ugovorom o obradi podataka u skladu s
+člankom 28. OUZP-a.
+
+6. Prijenos i obrada podataka izvan EU/EGP-a
+
+Pojedini pružatelji tehničkih usluga mogu obrađivati ili
+pohranjivati osobne podatke izvan Europske unije ili
+Europskog gospodarskog prostora.
+Takvi prijenosi provode se samo ako su ispunjeni uvjeti
+iz poglavlja V. OUZP-a, primjerice na temelju odluke
+Europske komisije o primjerenosti, standardnih ugovornih
+klauzula ili drugog dopuštenog mehanizma prijenosa.
+Kod pružatelja koji koriste standardne ugovorne klauzule
+primjenjuju se odgovarajuće zaštitne mjere i dodatne mjere
+zaštite kada su potrebne.
+
+7. Sigurnost osobnih podataka
+
+Apartman Asistent primjenjuje odgovarajuće tehničke i
+organizacijske mjere za zaštitu osobnih podataka od
+slučajnog ili nezakonitog uništenja, gubitka, izmjene,
+neovlaštenog otkrivanja ili neovlaštenog pristupa.
+Podaci se tijekom prijenosa štite korištenjem šifriranih
+komunikacijskih veza.
+Pristup podacima ograničen je na osobe i pružatelje usluga
+kojima je pristup potreban za pružanje, održavanje i
+zaštitu usluge.
+Ne možemo jamčiti apsolutnu sigurnost podataka, ali
+poduzimamo odgovarajuće mjere u skladu s prirodom i
+rizicima obrade.
+
+8. Koliko dugo čuvamo osobne podatke?
+
+Osobne podatke čuvamo samo onoliko dugo koliko je potrebno
+za ostvarenje svrhe zbog koje su prikupljeni ili koliko je
+potrebno radi ispunjenja zakonskih obveza.
+Podaci povezani s korisničkim računom i podaci koje
+korisnik pohranjuje u aplikaciji u pravilu se brišu nakon
+brisanja korisničkog računa, osim ako postoji zakonska ili
+druga dopuštena osnova za njihovo daljnje čuvanje.
+Određeni tehnički, sigurnosni ili računovodstveni podaci
+mogu se čuvati dulje ako je to potrebno radi ispunjenja
+zakonskih obveza, zaštite pravnih zahtjeva ili sigurnosti
+sustava.
+
+9. Prava ispitanika
+
+U skladu s primjenjivim propisima o zaštiti osobnih
+podataka, ispitanici mogu imati osobito sljedeća prava:
+- pravo na pristup osobnim podacima
+- pravo na ispravak netočnih ili nepotpunih osobnih
+  podataka
+- pravo na brisanje osobnih podataka
+- pravo na ograničenje obrade
+- pravo na prenosivost podataka, kada su ispunjeni
+  zakonski uvjeti
+- pravo na prigovor na obradu koja se temelji na
+  legitimnom interesu
+- pravo na povlačenje privole u bilo kojem trenutku, kada
+  se obrada temelji na privoli
+
+Povlačenje privole ne utječe na zakonitost obrade koja je
+provedena prije njezina povlačenja.
+
+Za ostvarivanje svojih prava možete se obratiti na:
 szonjakrizsan@gmail.com
 
-8. Löschung des Benutzerkontos
+Zahtjevi se obrađuju u skladu s rokovima i uvjetima
+propisanim OUZP-om.
 
-Die Nutzerin bzw. der Nutzer kann das Benutzerkonto jederzeit
-löschen.
-Mit der Löschung des Kontos werden sämtliche personenbezogenen
-Daten gelöscht, soweit keine gesetzlichen Aufbewahrungspflichten
-entgegenstehen.
+10. Pravo na pritužbu nadzornom tijelu
 
-9. Beschwerderecht
+Ako ispitanik smatra da se njegovi osobni podaci obrađuju
+protivno propisima o zaštiti osobnih podataka, ima pravo
+podnijeti pritužbu nadležnom nadzornom tijelu.
+Budući da se voditelj obrade nalazi u Mađarskoj, nadležno
+nadzorno tijelo je osobito: Nemzeti Adatvédelmi és
+Információszabadság Hatóság (NAIH).
+U skladu s člankom 77. OUZP-a, ispitanik može podnijeti
+pritužbu i nadzornom tijelu države članice svojeg
+uobičajenog boravišta, mjesta rada ili mjesta navodne
+povrede.
+Za Republiku Hrvatsku nadležno je: Agencija za zaštitu
+osobnih podataka (AZOP).
 
-Betroffene Personen haben das Recht, sich bei einer
-Datenschutzaufsichtsbehörde zu beschweren.
-Da sich die verantwortliche Stelle in Ungarn befindet, ist
-insbesondere zuständig: Nemzeti Adatvédelmi és Információszabadság
-Hatóság (NAIH).
-Darüber hinaus kann eine Beschwerde auch bei der
-Datenschutzaufsichtsbehörde des gewöhnlichen Aufenthaltsortes, des
-Arbeitsplatzes oder des Ortes des mutmaßlichen Datenschutzverstoßes
-eingereicht werden.
+11. Brisanje korisničkog računa
 
-10. Änderungen dieser Datenschutzerklärung
+Korisnik može u bilo kojem trenutku zatražiti brisanje
+svojeg korisničkog računa.
+Brisanjem računa brišu se podaci povezani s korisničkim
+računom i drugi podaci koji se mogu izbrisati bez kršenja
+zakonskih obveza ili drugih dopuštenih razloga za njihovo
+čuvanje.
+Brisanje podataka koje je Apartman Asistent dužan čuvati
+na temelju zakona provodi se nakon isteka odgovarajućeg
+roka čuvanja.
 
-Der Anbieter behält sich vor, diese Datenschutzerklärung
-anzupassen, sofern dies aufgrund gesetzlicher, technischer oder
-organisatorischer Änderungen erforderlich wird.
-Die jeweils aktuelle Fassung ist jederzeit innerhalb der Anwendung
-abrufbar.
+12. Kolačići i slične tehnologije
 
-Gültig ab: Juni 2026
+Apartman Asistent može koristiti tehnički nužne kolačiće i
+slične tehnologije potrebne za prijavu, sigurnost i
+pravilno funkcioniranje aplikacije.
+Tehnologije koje se koriste za analitiku, mjerenje
+oglašavanja ili druge svrhe koje nisu nužne za pružanje
+usluge aktiviraju se samo u skladu s primjenjivim
+propisima i, kada je potrebno, nakon prethodne privole
+korisnika.
+Ako se koriste takve tehnologije, korisniku se putem
+odgovarajućeg mehanizma za upravljanje privolama
+omogućuje donošenje i povlačenje odluke o njihovom
+korištenju.
+
+13. Automatizirano donošenje odluka
+
+Apartman Asistent ne donosi odluke koje proizvode pravne
+učinke za korisnike ili na sličan način značajno utječu
+na njih isključivo na temelju automatizirane obrade
+osobnih podataka.
+
+14. Izmjene ove Izjave o zaštiti podataka
+
+Ova Izjava o zaštiti podataka može se izmijeniti ako je to
+potrebno zbog promjena u usluzi, tehničkoj infrastrukturi,
+načinu obrade osobnih podataka ili primjenjivim pravnim
+propisima.
+Aktualna verzija Izjave uvijek je dostupna korisnicima
+unutar aplikacije.
+Ako se uvedu bitne promjene koje zahtijevaju obavještavanje
+korisnika ili novu privolu, korisnici će o tome biti
+obaviješteni na odgovarajući način.
+
+Datum stupanja na snagu: lipanj 2026.
 `,
   },
   contact: {
-    title: "Impressum",
+    title: "Impresum",
     body: `
-Angaben gemäß § 5 DDG und § 18 Abs. 2 MStV
+Podaci o pružatelju usluge sukladno primjenjivim propisima
+o uslugama informacijskog društva.
 
-Betreiberin
+Pružatelj usluge
 
 Dr. Szonja Katalin Krizsán
 H-9791 Torony
 Akácos Str. 21
-Ungarn
-E-Mail: szonjakrizsan@gmail.com
+Mađarska
+E-mail: szonjakrizsan@gmail.com
 
-Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV
+Kontakt
 
-Dr. Szonja Katalin Krizsán
-Anschrift wie oben.
-
-Diese Anwendung wird von einer in Ungarn ansässigen Privatperson
-betrieben.
-Derzeit erfolgt der Betrieb nicht im Rahmen eines Unternehmens.
-Eine Umsatzsteuer-Identifikationsnummer (USt-IdNr.) besteht nicht.
-
-Haben Sie Fragen zur Anwendung oder einen Fehler entdeckt?
-Dann schreiben Sie gerne eine E-Mail an szonjakrizsan@gmail.com.
-Ich bemühe mich, so schnell wie möglich zu antworten.
+Za pitanja u vezi s Apartman Asistentom, tehničke
+probleme ili druge upite možete se obratiti na navedenu
+adresu e-pošte.
 `,
   },
 };
@@ -249,7 +381,7 @@ export function LegalScreen({ doc, onBack }: { doc: LegalDoc; onBack: () => void
         <button type="button" onClick={onBack}
           className="pressable mb-5 flex items-center gap-2 rounded-xl px-3 py-2 text-[13px] font-medium"
           style={{ background: "rgb(86 176 187 / 0.12)", color: "#56b0bb" }}>
-          <ArrowLeft className="h-4 w-4" /> Zurück
+          <ArrowLeft className="h-4 w-4" /> Natrag
         </button>
         <h1 className="text-[18px] font-bold text-text-primary mb-4">{d.title}</h1>
         <div className="card-elevated rounded-2xl p-5">
