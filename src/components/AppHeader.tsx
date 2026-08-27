@@ -3,12 +3,12 @@ import type { TabId } from "../types/navigation";
 import { supabase } from "../supabaseClient";
 
 const titles: Record<TabId, { title: string; subtitle?: string }> = {
-  home:      { title: "Apartment Assistant", subtitle: "Ihr heutiger Tag"     },
-  bookings:  { title: "Buchungen",           subtitle: "Aktive Buchungen"     },
-  tasks:     { title: "Aufgaben",            subtitle: "Tagesaufgaben"        },
-  invoices:  { title: "Rechnungen",          subtitle: "Zahlungen"            },
-  contacts:  { title: "Kontakte",            subtitle: "Gäste"                },
-  apartments: { title: "Ferienwohnungen", subtitle: "iCal-Einstellungen" },
+  home:      { title: "Apartman Asistent", subtitle: "Vaš današnji dan"    },
+  bookings:  { title: "Rezervacije",       subtitle: "Aktivne rezervacije" },
+  tasks:     { title: "Zadaci",            subtitle: "Dnevni zadaci"       },
+  invoices:  { title: "Računi",            subtitle: "Plaćanja"            },
+  contacts:  { title: "Kontakti",          subtitle: "Gosti"               },
+  apartments: { title: "Apartmani", subtitle: "iCal postavke" },
 };
 
 export function AppHeader({ tab }: { tab: TabId }) {
@@ -43,7 +43,7 @@ export function AppHeader({ tab }: { tab: TabId }) {
             color:      "rgb(207 102 85 / 0.7)",
             outline:    "1px solid rgb(207 102 85 / 0.15)",
           }}
-          aria-label="Abmelden"
+          aria-label="Odjava"
         >
           <LogOut className="h-3.5 w-3.5" strokeWidth={2} />
         </button>

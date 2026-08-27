@@ -3,12 +3,12 @@ import type { TabId } from "../types/navigation";
 import { supabase } from "../supabaseClient";
 
 const tabs: { id: TabId; label: string; icon: typeof Home }[] = [
-  { id: "home",       label: "Startseite",      icon: Home },
-  { id: "bookings",   label: "Buchungen",       icon: CalendarRange },
-  { id: "tasks",      label: "Aufgaben",        icon: ListChecks },
-  { id: "invoices",   label: "Rechnungen",      icon: Receipt },
-  { id: "contacts",   label: "Kontakte",        icon: Users },
-  { id: "apartments", label: "Ferienwohnungen", icon: Building2 },
+  { id: "home",       label: "Početna",  icon: Home },
+  { id: "bookings",   label: "Rezervacije", icon: CalendarRange },
+  { id: "tasks",      label: "Zadaci",   icon: ListChecks },
+  { id: "invoices",   label: "Računi",   icon: Receipt },
+  { id: "contacts",   label: "Kontakti", icon: Users },
+  { id: "apartments", label: "Apartmani", icon: Building2 },
 ];
 
 interface SideNavProps {
@@ -25,8 +25,8 @@ export function SideNav({ active, onChange }: SideNavProps) {
       }}>
       {/* Logo */}
       <div className="px-5 py-5 border-b" style={{ borderColor: "var(--color-border-faint)" }}>
-        <p className="text-[13px] font-bold text-text-primary">Apartment Assistant</p>
-        <p className="text-[11px] text-text-muted mt-0.5">Verwaltungsoberfläche</p>
+        <p className="text-[13px] font-bold text-text-primary">Apartman Asistent</p>
+        <p className="text-[11px] text-text-muted mt-0.5">Sučelje za upravljanje</p>
       </div>
 
       {/* Nav items */}
@@ -56,12 +56,12 @@ export function SideNav({ active, onChange }: SideNavProps) {
 
       {/* Footer */}
       <div className="px-5 py-4 border-t flex flex-col gap-2" style={{ borderColor: "var(--color-border-faint)" }}>
-        <p className="text-[10px] text-text-muted">v1.0 · Apartment Assistant</p>
+        <p className="text-[10px] text-text-muted">v1.0 · Apartman Asistent</p>
         <button type="button"
           onClick={() => supabase.auth.signOut()}
           className="pressable text-left text-[11px] font-medium transition-soft"
           style={{ color: "rgb(207 102 85 / 0.7)" }}>
-          Abmelden
+          Odjava
         </button>
       </div>
     </aside>

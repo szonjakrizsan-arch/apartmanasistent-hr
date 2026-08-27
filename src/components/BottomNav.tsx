@@ -2,12 +2,12 @@ import { Home, CalendarRange, ListChecks, Receipt, Users, Building2 } from "luci
 import type { TabId } from "../types/navigation";
 
 const tabs: { id: TabId; label: string; icon: typeof Home }[] = [
-  { id: "home",       label: "Start",      icon: Home },
-  { id: "bookings",   label: "Buchungen",  icon: CalendarRange },
-  { id: "tasks",      label: "Aufgaben",   icon: ListChecks },
-  { id: "invoices",   label: "Rechnungen", icon: Receipt },
-  { id: "contacts",   label: "Kontakte",   icon: Users },
-  { id: "apartments", label: "Wohnungen",  icon: Building2 },
+  { id: "home",       label: "Početna",     icon: Home },
+  { id: "bookings",   label: "Rezervacije", icon: CalendarRange },
+  { id: "tasks",      label: "Zadaci",      icon: ListChecks },
+  { id: "invoices",   label: "Računi",      icon: Receipt },
+  { id: "contacts",   label: "Kontakti",    icon: Users },
+  { id: "apartments", label: "Apartmani",   icon: Building2 },
 ];
 
 interface BottomNavProps {
@@ -20,7 +20,7 @@ export function BottomNav({ active, onChange, alertCount = 0 }: BottomNavProps) 
   return (
     <nav
       className="md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-border-faint/80 bg-surface-raised/92 shadow-[0_-2px_16px_rgb(0_0_0_/_0.08)] backdrop-blur-md"
-      aria-label="Hauptnavigation"
+      aria-label="Glavna navigacija"
     >
       <div className="mx-auto flex max-w-lg items-stretch justify-around px-2 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5">
         {tabs.map(({ id, label, icon: Icon }) => {
