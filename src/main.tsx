@@ -5,9 +5,9 @@ import { CookieConsentBanner } from "./components/CookieConsentBanner";
 import { initConsentOnLoad } from "./lib/consent";
 import "./index.css";
 
-// Lädt Google Ads/Meta Pixel sofort, falls bei einem früheren Besuch schon
-// zugestimmt wurde. Ohne gespeicherte Entscheidung passiert hier nichts —
-// der Banner (unten) fragt dann danach.
+// Odmah učitava Google Ads/Meta Pixel ako je privola već dana kod
+// prethodnog posjeta. Ako nema pohranjene odluke, ovdje se ništa ne
+// događa — banner (ispod) tada pita za privolu.
 initConsentOnLoad();
 
 createRoot(document.getElementById("root")!).render(
