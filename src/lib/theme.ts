@@ -62,9 +62,9 @@ export const sourceStyles: Record<
 };
 
 export const paymentLabels: Record<PaymentStatus, string> = {
-  paid:    "Erledigt",
-  pending: "Zu prüfen",
-  partial: "Anzahlung",
+  paid:    "Riješeno",
+  pending: "Za provjeru",
+  partial: "Predujam",
 };
 
 export const paymentStyles: Record<PaymentStatus, string> = {
