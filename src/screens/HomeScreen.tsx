@@ -27,18 +27,18 @@ export function HomeScreen({ onNavigate, appState, ical, hasApartments, onAddDem
 
   const weekOverview = weekDays.map((date) => ({
     date: String(date.getDate()),
-    dayLabel: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"][date.getDay()],
+    dayLabel: ["Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub"][date.getDay()],
     isToday: date.toDateString() === today.toDateString(),
     arrivals: 0,
     departures: 0,
     occupied: 0,
   }));
 
-  // Pro Tag zählen wir EINDEUTIGE Ferienwohnungs-Namen (Set), nicht
-  // einzelne Buchungen. Wenn eine Wohnung aus zwei Quellen (z. B. Airbnb
-  // und Booking.com) einen überlappenden Eintrag für denselben Zeitraum
-  // hat, zählt diese eine Wohnung an dem Tag nur einmal in
-  // Anreise/Belegung/Abreise — nicht doppelt.
+  // Za svaki dan brojimo JEDINSTVENA imena apartmana (Set), ne
+  // pojedinačne rezervacije. Ako apartman ima preklapajući unos iz dva
+  // izvora (npr. Airbnb i Booking.com) za isto razdoblje, taj se jedan
+  // apartman tog dana broji samo jednom u dolasku/popunjenosti/odlasku
+  // — ne dvaput.
   const arrivalApartmentsByDay: Set<string>[] = weekDays.map(() => new Set());
   const occupiedApartmentsByDay: Set<string>[] = weekDays.map(() => new Set());
   const departureApartmentsByDay: Set<string>[] = weekDays.map(() => new Set());
@@ -92,19 +92,19 @@ export function HomeScreen({ onNavigate, appState, ical, hasApartments, onAddDem
   const stats = [
     {
       id: "1",
-      label: "Ankunft heute",
+      label: "Dolazak danas",
       value: ical.bookings.filter((b) => b.isTodayArrival).length,
       icon: "arrivals" as const,
     },
     {
       id: "2",
-      label: "Gast anwesend",
+      label: "Gost prisutan",
       value: ical.bookings.filter((b) => b.status === "staying").length,
       icon: "staying" as const,
     },
     {
       id: "3",
-      label: "Abreise heute",
+      label: "Odlazak danas",
       value: ical.bookings.filter((b) => b.isTodayDeparture).length,
       icon: "departures" as const,
     },
@@ -120,24 +120,24 @@ export function HomeScreen({ onNavigate, appState, ical, hasApartments, onAddDem
             <span className="text-[26px]" aria-hidden>🏠</span>
           </span>
           <h2 className="text-[17px] font-bold text-text-primary">
-            Willkommen bei Apartment Assistant!
+            Dobrodošli u Apartman Asistent!
           </h2>
           <p className="text-[13px] text-text-secondary max-w-xs leading-relaxed">
-            Fügen Sie zunächst Ihre erste Ferienwohnung hinzu und verbinden Sie sie
-            mit Ihrem Kalender (Airbnb, Booking.com). Ihre Buchungen erscheinen anschließend automatisch hier.
+            Prvo dodajte svoj prvi apartman i povežite ga s kalendarom
+            (Airbnb, Booking.com). Vaše rezervacije potom će se automatski pojaviti ovdje.
           </p>
           <button type="button" onClick={() => onNavigate("apartments")}
             className="pressable mt-2 rounded-xl px-6 py-3 text-[13px] font-semibold"
             style={{ background: "rgb(86 176 187 / 0.20)", color: "#56b0bb", outline: "1px solid rgb(86 176 187 / 0.30)" }}>
-            Erste Ferienwohnung hinzufügen →
+            Dodaj prvi apartman →
           </button>
           <button type="button" onClick={onAddDemo}
             className="pressable text-[13px] font-bold text-white underline underline-offset-2">
-            Lieber mit Demo-Daten testen
+            Radije isprobavam s demo podacima
           </button>
           <p className="text-[11px] text-text-muted max-w-xs mt-1">
-            Den iCal-Kalenderlink finden Sie in den Einstellungen Ihrer Buchungsplattform
-            (unter „Kalendersynchronisierung" oder „iCal-Export").
+            iCal poveznicu kalendara pronaći ćete u postavkama vaše platforme za rezervacije
+            (pod „Sinkronizacija kalendara" ili „iCal izvoz").
           </p>
         </section>
       </div>
@@ -151,10 +151,10 @@ export function HomeScreen({ onNavigate, appState, ical, hasApartments, onAddDem
       <div className="section-rule" aria-hidden />
       <section className="card-elevated rounded-2xl px-4 py-3">
         <p className="text-[11px] font-bold uppercase tracking-widest text-text-muted">
-          Heutige Aufgaben
+          Današnji zadaci
         </p>
         <p className="mt-1 text-[15px] font-semibold text-text-primary">
-          {taskCount} aktive {taskCount === 1 ? "Aufgabe" : "Aufgaben"}
+          {taskCount} {taskCount === 1 ? "aktivan zadatak" : "aktivnih zadataka"}
         </p>
       </section>
       <TodayMovements
