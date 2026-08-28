@@ -48,7 +48,7 @@ export function BookingCard({
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key === "Enter" && onOpen()}
-      aria-label={`Details zu ${booking.apartment}`}
+      aria-label={`Detalji za ${booking.apartment}`}
     >
       {/* Left accent stripe */}
       <div
@@ -69,7 +69,7 @@ export function BookingCard({
               }}
             >
               <KeyRound className="h-2.5 w-2.5" aria-hidden />
-              Heute Anreise
+              Danas dolazak
             </span>
           )}
           {booking.isTodayDeparture && (
@@ -82,7 +82,7 @@ export function BookingCard({
 }}
             >
               <DoorOpen className="h-2.5 w-2.5" aria-hidden />
-              Heute Abreise
+              Danas odlazak
             </span>
           )}
           {!booking.isTodayArrival && !booking.isTodayDeparture && (
@@ -95,7 +95,7 @@ export function BookingCard({
               }}
             >
               <Home className="h-2.5 w-2.5" aria-hidden />
-              Vor Ort
+              Na licu mjesta
             </span>
           )}
         {booking.hasSourceConflict && (
@@ -108,7 +108,7 @@ export function BookingCard({
 }}
   >
  <AlertTriangle className="h-2.5 w-2.5" aria-hidden />
-    Abweichendes Datum — bitte prüfen
+    Neusklađen datum — provjerite
   </span>
 )}
           {booking.singleSourceRisk && (
@@ -121,7 +121,7 @@ export function BookingCard({
     }}
   >
     <AlertTriangle className="h-2.5 w-2.5" aria-hidden />
-    Nur eine Quelle — Datum nicht bestätigt
+    Samo jedan izvor — datum nije potvrđen
   </span>
 )}
         </div>
@@ -185,7 +185,7 @@ export function BookingCard({
                   ? { background: "rgb(90 191 138 / 0.07)", borderColor: "rgb(90 191 138 / 0.20)" }
                   : { background: "rgb(210 100 70 / 0.07)", borderColor: "rgb(210 100 70 / 0.22)" }
               }
-              aria-label={paymentChecked ? "Zahlung erledigt" : "Zahlung zu prüfen"}
+              aria-label={paymentChecked ? "Plaćanje riješeno" : "Plaćanje za provjeru"}
             >
           <span
   className="flex items-center gap-1.5 text-[11px] font-medium"
@@ -194,7 +194,7 @@ export function BookingCard({
   {paymentChecked
     ? <Check className="h-3 w-3" strokeWidth={2.5} aria-hidden />
     : <AlertTriangle className="h-3 w-3" strokeWidth={2} aria-hidden />}
-  {paymentChecked ? "Zahlungserinnerung" : parseAmount(paymentDeposit ?? "") > 0 && parseAmount(paymentAmount ?? "") > 0 ? "Teilweise bezahlt" : "Zahlungserinnerung"}
+  {paymentChecked ? "Podsjetnik za plaćanje" : parseAmount(paymentDeposit ?? "") > 0 && parseAmount(paymentAmount ?? "") > 0 ? "Djelomično plaćeno" : "Podsjetnik za plaćanje"}
 </span>
               <span
                 className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
@@ -204,7 +204,7 @@ export function BookingCard({
                     : { background: "rgb(210 100 70 / 0.14)", color: "#d26448", outline: "1px solid rgb(210 100 70 / 0.26)" }
                 }
               >
-                {paymentChecked ? "Erledigt" : "Zu prüfen"}
+                {paymentChecked ? "Riješeno" : "Za provjeru"}
               </span>
             </button>
           )}
