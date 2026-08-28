@@ -22,8 +22,8 @@ const staying = movements.filter(
   return (
     <section>
       <SectionHeader
-        title="Heute im Haus"
-        subtitle="Anreisen und Abreisen"
+        title="Danas u kući"
+        subtitle="Dolasci i odlasci"
         action={
           onSeeAll ? (
             <button
@@ -31,7 +31,7 @@ const staying = movements.filter(
               onClick={onSeeAll}
               className="pressable flex items-center gap-0.5 rounded-lg px-1 py-0.5 text-[13px] font-medium text-navy transition-soft"
             >
-              Buchungen
+              Rezervacije
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </button>
           ) : undefined
@@ -41,7 +41,7 @@ const staying = movements.filter(
   <div className="grid grid-cols-3 gap-4">
     <div>
       <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-[#df8765]">
-        Ankommend
+        Dolazi
       </div>
       <div
   className={
@@ -50,12 +50,12 @@ const staying = movements.filter(
       : "text-[15px] font-medium text-text-secondary"
   }
 >
-        {arriving.map((b) => b.apartment).join(", ") || "Heute keine"}
+        {arriving.map((b) => b.apartment).join(", ") || "Danas nema"}
       </div>
     </div>
     <div>
       <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-[#63bea2]">
-        Vor Ort
+        Na licu mjesta
       </div>
       <div
   className={
@@ -64,12 +64,12 @@ const staying = movements.filter(
       : "text-[15px] font-medium text-text-secondary"
   }
 >
-        {staying.map((b) => b.apartment).join(", ") || "Heute keine"}
+        {staying.map((b) => b.apartment).join(", ") || "Danas nema"}
       </div>
     </div>
     <div>
       <div className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-[#58b3be]">
-        Abreisend
+        Odlazi
       </div>
       <div
   className={
@@ -78,7 +78,7 @@ const staying = movements.filter(
       : "text-[15px] font-medium text-text-secondary"
   }
 >
-        {departing.map((b) => b.apartment).join(", ") || "Heute keine"}
+        {departing.map((b) => b.apartment).join(", ") || "Danas nema"}
       </div>
     </div>
   </div>

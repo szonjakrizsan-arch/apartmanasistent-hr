@@ -49,7 +49,7 @@ export function WeeklyOverview({ days, compact = false }: WeeklyOverviewProps) {
 
   return (
     <section>
-      <SectionHeader title="Wochenauslastung" subtitle="Einheiten pro Tag" />
+      <SectionHeader title="Tjedna popunjenost" subtitle="Jedinice po danu" />
 
       <div className="card-elevated rounded-2xl px-4 py-4">
         <div className="flex gap-1.5">
