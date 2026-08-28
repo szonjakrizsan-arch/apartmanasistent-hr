@@ -18,20 +18,20 @@ export function makeEmptyPayment(): PaymentData {
   return { amount: "", deposit: "", method: "transfer", status: "pending" };
 }
 
-/** "300 €" / "300" → 300 (Zahl). Bei ungültiger Eingabe 0. */
+/** "300 €" / "300" → 300 (broj). Kod nevažećeg unosa 0. */
 export function parseAmount(s: string): number {
   const digits = (s || "").replace(/[^\d]/g, "");
   return digits ? parseInt(digits, 10) : 0;
 }
 
-/** Restbetrag = Gesamtbetrag − Anzahlung (nicht unter 0). */
+/** Preostali iznos = Ukupan iznos − Predujam (ne ide ispod 0). */
 export function remainingAmount(p: PaymentData): number {
   return Math.max(0, parseAmount(p.amount) - parseAmount(p.deposit));
 }
 
-/** Zahl → "300 €" Format. */
+/** Broj → format "300 €". */
 export function formatFt(n: number): string {
-  return n.toLocaleString("de-DE") + " €";
+  return n.toLocaleString("hr-HR") + " €";
 }
 
 export type CustomTaskRecurrence =
@@ -49,11 +49,11 @@ export interface CustomTask {
 }
 
 export const RECURRENCE_LABELS: Record<string, string> = {
-  once: "Einmalig", daily: "Täglich",
-  weekly_mon: "Jeden Montag", weekly_tue: "Jeden Dienstag",
-  weekly_wed: "Jeden Mittwoch", weekly_thu: "Jeden Donnerstag",
-  weekly_fri: "Jeden Freitag", weekly_sat: "Jeden Samstag",
-  weekly_sun: "Jeden Sonntag",
+  once: "Jednokratno", daily: "Svaki dan",
+  weekly_mon: "Svaki ponedjeljak", weekly_tue: "Svaki utorak",
+  weekly_wed: "Svaku srijedu", weekly_thu: "Svaki četvrtak",
+  weekly_fri: "Svaki petak", weekly_sat: "Svaku subotu",
+  weekly_sun: "Svaku nedjelju",
 };
 
 export function isCustomTaskActiveToday(task: CustomTask): boolean {
@@ -76,9 +76,9 @@ export function isCustomTaskActiveToday(task: CustomTask): boolean {
   return false;
 }
 
-/** Gilt die wiederkehrende Aufgabe heute als erledigt?
- *  Nur wenn done=true UND doneDate der heutige Tag ist.
- *  Bei altem (gestrigem/vorwöchigem) doneDate gilt sie heute als offen. */
+/** Smatra li se ponavljajući zadatak danas obavljenim?
+ *  Samo ako je done=true I doneDate je današnji dan.
+ *  Kod starog (jučerašnjeg/prošlotjednog) doneDate smatra se danas otvorenim. */
 export function isCustomTaskDoneToday(task: CustomTask): boolean {
   if (!task.done) return false;
   if (!task.doneDate) return false;
@@ -113,12 +113,12 @@ export function useAppState(userId?: string): AppState & AppStateActions {
   const [customTasks,  setCustomTasks]  = useState<CustomTask[]>([]);
   const [userName, setUserNameState]    = useState("");
 
-  /* Verhindert das "Buchstaben springen" beim Tippen in Kontaktfeldern:
-     - debounceRef: verzögert den Supabase-Schreibvorgang (statt bei jedem
-       Tastenanschlag), damit nicht ständig neue Netzwerk-Roundtrips laufen.
-     - recentLocalWriteRef: merkt sich, wann zuletzt lokal geschrieben wurde,
-       damit ein verspätetes Realtime-Echo der EIGENEN Änderung den gerade
-       getippten Text nicht überschreibt. */
+  /* Sprječava "skakanje slova" pri tipkanju u poljima kontakata:
+     - debounceRef: odgađa Supabase zapisivanje (umjesto kod svakog
+       pritiska tipke), da se ne pokreću stalno novi mrežni zahtjevi.
+     - recentLocalWriteRef: pamti kada je zadnji put lokalno zapisano,
+       kako zakašnjeli realtime odjek VLASTITE promjene ne bi
+       prepisao upravo utipkani tekst. */
   const debounceRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
   const recentLocalWriteRef = useRef<Record<string, number>>({});
 
@@ -186,10 +186,10 @@ export function useAppState(userId?: string): AppState & AppStateActions {
 
   useEffect(() => { loadAll(); }, [loadAll]);
 
-  /* Live-Updates: wenn eine Reinigungskraft über den öffentlichen
-     Reinigungslink (functions/api/cleaning/[token].ts) eine Reinigung
-     als "Erledigt" markiert, soll das sofort hier im Dashboard
-     erscheinen, ohne dass die Seite neu geladen werden muss. */
+  /* Ažuriranja uživo: kada osoba za čišćenje putem javne poveznice za
+     čišćenje (functions/api/cleaning/[token].ts) označi čišćenje kao
+     "Obavljeno", to se odmah treba prikazati ovdje na nadzornoj ploči,
+     bez potrebe za ponovnim učitavanjem stranice. */
   useEffect(() => {
     if (!userId) return;
     const channel = supabase
@@ -201,7 +201,7 @@ export function useAppState(userId?: string): AppState & AppStateActions {
           const row = payload.new as any;
           if (!row?.booking_id) return;
           const lastLocalWrite = recentLocalWriteRef.current[row.booking_id] ?? 0;
-          if (Date.now() - lastLocalWrite < 2000) return; // Echo der eigenen Änderung ignorieren
+          if (Date.now() - lastLocalWrite < 2000) return; // ignoriraj odjek vlastite promjene
           setDetailStates((prev) => ({
             ...prev,
             [row.booking_id]: {
@@ -287,12 +287,11 @@ export function useAppState(userId?: string): AppState & AppStateActions {
     return getPayment(id).status === "paid";
   }
 
-  /** Findet die zuletzt bekannte Reinigungs-Erledigt-Markierung für die
-   *  Ferienwohnung dieser ankommenden Buchung — unabhängig davon, ob die
-   *  vorherige Abreise am selben Tag war oder Tage zuvor. Sucht dazu direkt
-   *  in den geladenen detailStates nach dem booking_key mit demselben
-   *  Apartment-Namen und dem jüngsten Check-out-Datum, das nicht nach dem
-   *  Check-in dieser Buchung liegt. */
+  /** Pronalazi zadnju poznatu oznaku "čišćenje obavljeno" za apartman ove
+   *  dolazeće rezervacije — bez obzira je li prethodni odlazak bio istog
+   *  dana ili nekoliko dana ranije. Traži izravno u učitanim detailStates
+   *  booking_key s istim imenom apartmana i najnovijim datumom odjave
+   *  koji nije nakon prijave ove rezervacije. */
   function prevCleaningFor(arrivingId: string, liveBookings: Booking[]): boolean | undefined {
     const arriving = liveBookings.find((b) => b.id === arrivingId);
     if (!arriving) return undefined;
@@ -385,24 +384,24 @@ export function deriveTasks(
     const detail = detailStates[b.id] ?? makeEmptyDetailState();
     const pd     = paymentData[b.id]  ?? makeEmptyPayment();
     if (b.status === "arriving") {
-      tasks.push({ id: `key-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "key", label: `Schlüssel vorbereiten — ${b.apartment}`, sublabel: b.arrival, done: !!detail.keyReady, urgent: true });
-      tasks.push({ id: `checkin-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "checkin", label: `Check-in-Info senden — ${b.apartment}`, sublabel: b.arrival, done: !!detail.checkinSent, urgent: false });
-      tasks.push({ id: `ntak-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "ntak", label: `Meldeschein-Kontrolle — ${b.apartment}`, sublabel: b.arrival, done: !!detail.ntakDone, urgent: false });
-      if (pd.status === "pending") tasks.push({ id: `payment-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "payment", label: `Zahlung prüfen — ${b.apartment}`, sublabel: pd.amount ? `${pd.amount} · ${methodLabel(pd.method)}` : methodLabel(pd.method), done: false, urgent: true });
+      tasks.push({ id: `key-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "key", label: `Pripremiti ključeve — ${b.apartment}`, sublabel: b.arrival, done: !!detail.keyReady, urgent: true });
+      tasks.push({ id: `checkin-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "checkin", label: `Poslati info za prijavu — ${b.apartment}`, sublabel: b.arrival, done: !!detail.checkinSent, urgent: false });
+      tasks.push({ id: `ntak-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "ntak", label: `Prijava gosta — ${b.apartment}`, sublabel: b.arrival, done: !!detail.ntakDone, urgent: false });
+      if (pd.status === "pending") tasks.push({ id: `payment-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "payment", label: `Provjeriti plaćanje — ${b.apartment}`, sublabel: pd.amount ? `${pd.amount} · ${methodLabel(pd.method)}` : methodLabel(pd.method), done: false, urgent: true });
     }
     if (b.status === "staying" && pd.status === "pending" && pd.amount.trim()) {
-      tasks.push({ id: `payment-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "payment", label: `Zahlung prüfen — ${b.apartment}`, sublabel: `${pd.amount} · ${methodLabel(pd.method)}`, done: false, urgent: false });
+      tasks.push({ id: `payment-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "payment", label: `Provjeriti plaćanje — ${b.apartment}`, sublabel: `${pd.amount} · ${methodLabel(pd.method)}`, done: false, urgent: false });
     }
     if (b.status === "departing") {
-      tasks.push({ id: `cleaning-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "cleaning", label: `Reinigung — ${b.apartment}`, sublabel: "Heute Abreise · Dringend", done: !!detail.cleaningDone, urgent: true });
-      if (pd.status === "pending") tasks.push({ id: `payment-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "payment", label: `Zahlung prüfen — ${b.apartment}`, sublabel: pd.amount ? `${pd.amount} · ${methodLabel(pd.method)}` : methodLabel(pd.method), done: false, urgent: true });
+      tasks.push({ id: `cleaning-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "cleaning", label: `Čišćenje — ${b.apartment}`, sublabel: "Danas odlazak · Hitno", done: !!detail.cleaningDone, urgent: true });
+      if (pd.status === "pending") tasks.push({ id: `payment-${b.id}`, bookingId: b.id, apartment: b.apartment, type: "payment", label: `Provjeriti plaćanje — ${b.apartment}`, sublabel: pd.amount ? `${pd.amount} · ${methodLabel(pd.method)}` : methodLabel(pd.method), done: false, urgent: true });
     }
   }
   return tasks;
 }
 
 export function methodLabel(m: PaymentMethod): string {
-  return { cash: "Bar", transfer: "Überweisung", paypal: "PayPal", booking: "Booking.com", airbnb: "Airbnb" }[m];
+  return { cash: "Gotovina", transfer: "Bankovni prijenos", paypal: "PayPal", booking: "Booking.com", airbnb: "Airbnb" }[m];
 }
 
 export interface DerivedInvoice {

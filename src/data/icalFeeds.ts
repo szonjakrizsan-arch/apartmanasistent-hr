@@ -91,9 +91,9 @@ export function parseIcalDate(s: string): Date {
   );
 }
 
-/** Format Date as "28. Mai" in de locale */
+/** Format Date as "28. svi" in hr locale */
 export function formatHu(d: Date): string {
-  return d.toLocaleDateString("de-DE", {
+  return d.toLocaleDateString("hr-HR", {
     month: "short",
     day:   "numeric",
     timeZone: "UTC",
