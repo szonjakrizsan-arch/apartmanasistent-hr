@@ -67,9 +67,9 @@ export interface Alert {
 }
 
 export const stats: StatItem[] = [
-  { id: "1", label: "Ankunft heute",  value: 3,  icon: "arrivals"   },
-  { id: "2", label: "Gast anwesend", value: 12, icon: "staying"    },
-  { id: "3", label: "Abreise heute",  value: 2,  icon: "departures" },
+  { id: "1", label: "Dolazak danas",  value: 3,  icon: "arrivals"   },
+  { id: "2", label: "Gost prisutan", value: 12, icon: "staying"    },
+  { id: "3", label: "Odlazak danas",  value: 2,  icon: "departures" },
 ];
 
 /** Fallback empty array — real bookings come from useIcalBookings hook */
@@ -80,46 +80,46 @@ export const todayMovements = bookings.filter(
 );
 
 export const weekOverview: WeekDay[] = [
-  { date: "12", dayLabel: "Mo", isToday: false, arrivals: 1, departures: 0, occupied: 9  },
-  { date: "13", dayLabel: "Di", isToday: false, arrivals: 2, departures: 1, occupied: 10 },
-  { date: "14", dayLabel: "Mi", isToday: false, arrivals: 0, departures: 2, occupied: 8  },
-  { date: "15", dayLabel: "Do", isToday: false, arrivals: 1, departures: 1, occupied: 8  },
-  { date: "16", dayLabel: "Fr", isToday: true,  arrivals: 3, departures: 2, occupied: 12 },
-  { date: "17", dayLabel: "Sa", isToday: false, arrivals: 2, departures: 1, occupied: 13 },
-  { date: "18", dayLabel: "So", isToday: false, arrivals: 1, departures: 0, occupied: 14 },
+  { date: "12", dayLabel: "Pon", isToday: false, arrivals: 1, departures: 0, occupied: 9  },
+  { date: "13", dayLabel: "Uto", isToday: false, arrivals: 2, departures: 1, occupied: 10 },
+  { date: "14", dayLabel: "Sri", isToday: false, arrivals: 0, departures: 2, occupied: 8  },
+  { date: "15", dayLabel: "Čet", isToday: false, arrivals: 1, departures: 1, occupied: 8  },
+  { date: "16", dayLabel: "Pet", isToday: true,  arrivals: 3, departures: 2, occupied: 12 },
+  { date: "17", dayLabel: "Sub", isToday: false, arrivals: 2, departures: 1, occupied: 13 },
+  { date: "18", dayLabel: "Ned", isToday: false, arrivals: 1, departures: 0, occupied: 14 },
 ];
 
 
 export const alerts: Alert[] = [
   {
     id: "1",
-    title: "Neue Buchung",
-    message: "Michael Bauer — Altstadt Loft, ab 17. Mai",
-    time: "vor 8 Minuten",
+    title: "Nova rezervacija",
+    message: "Ivan Horvat — Stari grad Loft, od 17. svibnja",
+    time: "prije 8 minuta",
     type: "booking",
     read: false,
   },
   {
     id: "2",
-    title: "Zahlung ausstehend",
-    message: "Teilzahlung von Sabine Wagner fehlt noch",
-    time: "vor 1 Stunde",
+    title: "Plaćanje na čekanju",
+    message: "Nedostaje djelomično plaćanje od Ane Kovač",
+    time: "prije 1 sat",
     type: "payment",
     read: false,
   },
   {
     id: "3",
-    title: "Schlüsselübergabe heute",
-    message: "Anna Schmidt kommt gegen 15:00 Uhr an — Panorama Studio",
-    time: "Heute",
+    title: "Predaja ključeva danas",
+    message: "Marija Novak dolazi oko 15:00 — Panorama Studio",
+    time: "Danas",
     type: "guest",
     read: false,
   },
   {
     id: "4",
-    title: "Waschmaschinen-Wartung",
-    message: "Gartenblick Premium — Service nächste Woche",
-    time: "Gestern",
+    title: "Održavanje perilice rublja",
+    message: "Vrtni pogled Premium — servis sljedeći tjedan",
+    time: "Jučer",
     type: "maintenance",
     read: true,
   },
