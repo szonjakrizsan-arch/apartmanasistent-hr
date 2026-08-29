@@ -708,10 +708,10 @@ useEffect(() => {
                       ? { background: "rgb(90 191 138 / 0.14)", color: GREEN.text, boxShadow: `0 0 0 1px ${GREEN.border}` }
                       : { background: CORAL.bg, color: CORAL.text, boxShadow: CORAL.glow }
                   }
-                  aria-label={contactEditMode ? "Bearbeitung beenden" : "Kontakt bearbeiten"}
+                  aria-label={contactEditMode ? "Završi uređivanje" : "Uredi kontakt"}
                 >
                   <Pencil className="h-3 w-3" aria-hidden />
-                  {contactEditMode ? "Fertig" : "Bearbeiten"}
+                  {contactEditMode ? "Gotovo" : "Uredi"}
                 </button>
               </div>
 
@@ -720,35 +720,35 @@ useEffect(() => {
                   style={{ background: "#1a2220", border: `1px solid ${TEAL.border}` }}>
                   <label className="flex flex-col gap-1.5">
                     <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                      <User className="h-3 w-3" aria-hidden /> Name
+                      <User className="h-3 w-3" aria-hidden /> Ime
                     </span>
                     <input type="text" value={detail.contactName}
                       onChange={(e) => onDetailChange({ ...detail, contactName: e.target.value })}
-                      placeholder="Name des Gasts…" className={inputCls + " input-teal"} style={inputStyle} />
+                      placeholder="Ime gosta…" className={inputCls + " input-teal"} style={inputStyle} />
                   </label>
                   <label className="flex flex-col gap-1.5">
                     <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                      <Phone className="h-3 w-3" aria-hidden /> Telefonnummer
+                      <Phone className="h-3 w-3" aria-hidden /> Broj telefona
                     </span>
                     <input type="tel" value={detail.contactPhone}
                       onChange={(e) => onDetailChange({ ...detail, contactPhone: e.target.value })}
-                      placeholder="+49 151 23456789" className={inputCls + " input-teal"} style={inputStyle} />
+                      placeholder="+385 91 2345678" className={inputCls + " input-teal"} style={inputStyle} />
                   </label>
                   <label className="flex flex-col gap-1.5">
                   <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                  E-Mail-Adresse
+                  E-mail adresa
                   </span>
                   <input type="email" value={detail.contactEmail}
                   onChange={(e) => onDetailChange({ ...detail, contactEmail: e.target.value })}
-                  placeholder="gast@email.com" className={inputCls + " input-teal"} style={inputStyle} />
+                  placeholder="gost@email.com" className={inputCls + " input-teal"} style={inputStyle} />
                   </label>
                   <label className="flex flex-col gap-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                  Notiz (optional)
+                  Bilješka (neobavezno)
                   </span>
                     <input type="text" value={detail.contactNote}
                       onChange={(e) => onDetailChange({ ...detail, contactNote: e.target.value })}
-                      placeholder="z. B. späte Anreise, Kleinkind…" className={inputCls + " input-teal"} style={inputStyle} />
+                      placeholder="npr. kasni dolazak, malo dijete…" className={inputCls + " input-teal"} style={inputStyle} />
                   </label>
                 </div>
               ) : hasContact ? (
@@ -785,7 +785,7 @@ useEffect(() => {
                   style={{ borderColor: TEAL.border, background: "rgb(30 40 38 / 0.35)" }}>
                   <Phone className="h-3.5 w-3.5" style={{ color: T.secondary }} aria-hidden />
                   <span className="text-[12px]" style={{ color: T.secondary }}>
-                    Keine Kontaktdaten — auf „Bearbeiten" tippen
+                    Nema kontakt podataka — dodirnite „Uredi"
                   </span>
                 </div>
               )}
