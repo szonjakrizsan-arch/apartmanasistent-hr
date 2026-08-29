@@ -98,7 +98,7 @@ function DrawerSection({
           className="rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider"
           style={{ background: "rgb(90 191 138 / 0.14)", color: GREEN.text }}
         >
-          Erledigt
+          Riješeno
         </span>
       )}
       <div
@@ -183,7 +183,7 @@ function ArrivalCheckRow({ done, label, sublabel, readOnly = false, onToggle, is
         <span
           className="shrink-0 text-[10px] font-semibold"
           style={{ color: done ? GREEN.text : "rgb(86 176 187 / 0.50)" }}
-          title="Automatisch synchronisiert"
+          title="Automatski sinkronizirano"
         >
           {done ? "✓" : "—"}
         </span>
@@ -193,7 +193,7 @@ function ArrivalCheckRow({ done, label, sublabel, readOnly = false, onToggle, is
             className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold"
             style={{ background: "rgb(90 191 138 / 0.14)", color: GREEN.text }}
           >
-            Erledigt
+            Riješeno
           </span>
         )
       )}
@@ -204,7 +204,7 @@ function ArrivalCheckRow({ done, label, sublabel, readOnly = false, onToggle, is
     return (
       <div
         role="status"
-        aria-label={`${label}: ${done ? "erledigt" : "nicht erledigt"}`}
+        aria-label={`${label}: ${done ? "riješeno" : "nije riješeno"}`}
       >
         {inner}
       </div>
@@ -216,7 +216,7 @@ function ArrivalCheckRow({ done, label, sublabel, readOnly = false, onToggle, is
       type="button"
       onClick={onToggle}
       className="pressable w-full text-left transition-soft"
-      aria-label={`${label} — ${done ? "erledigt, zum Zurücksetzen tippen" : "zum Erledigen tippen"}`}
+      aria-label={`${label} — ${done ? "riješeno, dodirnite za poništavanje" : "dodirnite za rješavanje"}`}
     >
       {inner}
     </button>
