@@ -635,10 +635,10 @@ useEffect(() => {
                         textDecorationColor: "rgb(90 191 138 / 0.4)",
                       }}
                     >
-                      Reinigung — {booking.apartment}
+                      Čišćenje — {booking.apartment}
                     </p>
                     <p className="mt-0.5 text-[11px]" style={{ color: T.secondary }}>
-                      Reinigung nach Abreise · Aufgabe
+                      Čišćenje nakon odlaska · Zadatak
                     </p>
                   </div>
                   {detail.cleaningDone && (
@@ -646,7 +646,7 @@ useEffect(() => {
                       className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold"
                       style={{ background: "rgb(90 191 138 / 0.16)", color: GREEN.text, outline: `1px solid ${GREEN.border}` }}
                     >
-                      Erledigt
+                      Riješeno
                     </span>
                   )}
                 </button>
@@ -654,8 +654,8 @@ useEffect(() => {
             )}
 
             {/* 5 ── Notes ──────────────────────────────────────────── */}
-            <section aria-label="Notizen">
-              <DrawerSection label="Notiz" icon={<StickyNote className="h-3.5 w-3.5" />} />
+            <section aria-label="Bilješke">
+              <DrawerSection label="Bilješka" icon={<StickyNote className="h-3.5 w-3.5" />} />
               {!noteOpen ? (
                 <button
                   type="button"
@@ -664,7 +664,7 @@ useEffect(() => {
                   style={{ borderColor: CORAL.ring, background: CORAL.bg, color: CORAL.text, boxShadow: CORAL.glow }}
                 >
                   <Plus className="h-4 w-4" aria-hidden />
-                  <span className="text-[13px] font-medium">Notiz hinzufügen…</span>
+                  <span className="text-[13px] font-medium">Dodaj bilješku…</span>
                 </button>
               ) : (
                 <div
@@ -675,7 +675,7 @@ useEffect(() => {
                     ref={noteRef}
                     value={detail.note}
                     onChange={(e) => onDetailChange({ ...detail, note: e.target.value })}
-                    placeholder="Notizen, Anweisungen, besondere Wünsche…"
+                    placeholder="Bilješke, upute, posebne želje…"
                     rows={4}
                     className="w-full resize-none bg-transparent px-4 py-3 text-[13px] input-teal focus:outline-none"
                     style={{ color: T.primary, fontFamily: "inherit" }}
@@ -685,10 +685,10 @@ useEffect(() => {
                     style={{ borderTop: `1px solid ${TEAL.line}` }}
                   >
                     <span className="text-[11px]" style={{ color: T.secondary }}>
-                      {detail.note.length > 0 ? `${detail.note.length} Zeichen` : "Leer"}
+                      {detail.note.length > 0 ? `${detail.note.length} znakova` : "Prazno"}
                     </span>
                     <CoralBtn onClick={() => { if (!detail.note.trim()) setNoteOpen(false); }}>
-                      Schließen
+                      Zatvori
                     </CoralBtn>
                   </div>
                 </div>
