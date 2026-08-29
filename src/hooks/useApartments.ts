@@ -10,7 +10,7 @@ export interface ApartmentRow {
   cleaning_token?: string;
 }
 
-const DEMO_FEED_URL = "https://app.apartmentassistant.de/api/demo-ical";
+const DEMO_FEED_URL = "https://app.apartmanasistent.hr/api/demo-ical";
 
 export interface FeedRow {
   id: string;
@@ -55,9 +55,9 @@ async function load() {
   }
 
   async function deleteApartment(id: string) {
-    // Zuerst die zugehörigen iCal-Feeds löschen, damit keine
-    // "verwaisten" Feed-Zeilen auf eine nicht mehr existierende
-    // Ferienwohnung verweisen.
+    // Prvo brišemo pripadajuće iCal feedove, kako ne bi ostali
+    // "osiroteli" retci feedova koji upućuju na apartman koji
+    // više ne postoji.
     await supabase.from("ical_feeds").delete().eq("apartment_id", id);
     await supabase.from("apartments").delete().eq("id", id);
     await load();
@@ -74,19 +74,19 @@ async function load() {
     await load();
   }
 
-  /** Demo-Ferienwohnungen + zugehörige Demo-iCal-Feeds anlegen, damit die Nutzerin
-   *  die App risikofrei ausprobieren kann, bevor sie ihre eigenen Daten einträgt.
+  /** Kreira demo apartmane + pripadajuće demo iCal feedove, kako bi korisnica
+   *  mogla isprobati aplikaciju bez rizika, prije nego unese vlastite podatke.
    *
-   *  Es werden bewusst drei Wohnungen angelegt: nur so entsteht ein realistischer
-   *  Tag mit gleichzeitiger Anreise, anwesendem Gast und Abreise. Bei nur einer
-   *  Wohnung stünden auf der Startseite fast überall Nullen. */
+   *  Namjerno se kreiraju tri apartmana: samo tako nastaje realističan
+   *  dan s istovremenim dolaskom, prisutnim gostom i odlaskom. Kod samo
+   *  jednog apartmana na početnoj stranici bile bi gotovo posvuda nule. */
   async function addDemoApartment() {
     if (!userId) return;
 
     const demoApartments: { name: string; accent: string; set: string }[] = [
-      { name: "Muster-Ferienwohnung – Seeblick", accent: "amber", set: "1" },
-      { name: "Ferienwohnung Rosengarten",       accent: "sage",  set: "2" },
-      { name: "Studio Alte Mühle",               accent: "sky",   set: "3" },
+      { name: "Primjer apartmana – Pogled na more", accent: "amber", set: "1" },
+      { name: "Apartman Ružičnjak",                  accent: "sage",  set: "2" },
+      { name: "Studio Stari Mlin",                   accent: "sky",   set: "3" },
     ];
 
     for (const demo of demoApartments) {
@@ -108,8 +108,8 @@ async function load() {
     await load();
   }
 
-  /** Alle Demo-Ferienwohnungen und die zugehörigen Feeds löschen,
-   *  damit die Nutzerin mit einer sauberen Ausgangslage ihre eigenen Daten einträgt. */
+  /** Briše sve demo apartmane i pripadajuće feedove,
+   *  kako bi korisnica mogla unijeti vlastite podatke od čiste polazne točke. */
   async function deleteDemoApartments() {
     if (!userId) return;
     const demoIds = apartments.filter((a) => a.is_demo).map((a) => a.id);

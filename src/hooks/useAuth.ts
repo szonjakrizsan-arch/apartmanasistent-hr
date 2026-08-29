@@ -21,16 +21,16 @@ export function useAuth(): AuthState {
       sessionStorage.setItem("passwordRecovery", "true");
     }
 
-    /* Wichtig: Wenn der Nutzer den Tab wechselt (z. B. kurz in Gmail nachschaut)
-       und zurueckkommt, erneuert Supabase automatisch das Token und feuert ein
-       Auth-Event. Wuerden wir dabei jedes Mal ein NEUES User-Objekt in den State
-       schreiben, wuerde die gesamte App neu aufgebaut - geoeffnete Buchungen und
-       halb ausgefuellte Formulare gingen verloren.
-       Deshalb aktualisieren wir den State nur, wenn sich die User-ID
-       tatsaechlich aendert (An-/Abmeldung, Nutzerwechsel). */
+    /* Važno: kada korisnik promijeni karticu (npr. nakratko provjeri Gmail)
+       i vrati se, Supabase automatski obnavlja token i pokreće auth
+       event. Kad bismo pritom svaki put upisali NOVI user objekt u state,
+       cijela bi se aplikacija ponovno izgradila — otvorene rezervacije i
+       napola ispunjeni obrasci bi se izgubili.
+       Zato state ažuriramo samo kada se ID korisnika stvarno
+       promijeni (prijava/odjava, promjena korisnika). */
     function applyUser(next: User | null) {
       setUser((prev) => {
-        if (prev?.id === next?.id) return prev; // gleiche Identitaet -> Referenz behalten
+        if (prev?.id === next?.id) return prev; // isti identitet -> zadrži referencu
         return next;
       });
     }
@@ -56,8 +56,8 @@ export function useAuth(): AuthState {
           setUser(null);
         } else {
           /* TOKEN_REFRESHED, SIGNED_IN, USER_UPDATED, INITIAL_SESSION ...
-             applyUser sorgt dafuer, dass sich nichts aendert, solange es
-             derselbe Nutzer ist. */
+             applyUser osigurava da se ništa ne mijenja dok je riječ o
+             istom korisniku. */
           applyUser(session?.user ?? null);
         }
       }
