@@ -352,14 +352,14 @@ useEffect(() => {
           <div className="flex flex-col gap-6 px-5 pb-8">
 
             {/* 1 ── Dates ─────────────────────────────────────────── */}
-            <section aria-label="Daten">
-              <DrawerSection label="Aufenthalt" icon={<CalendarDays className="h-3.5 w-3.5" />} />
+            <section aria-label="Podaci">
+              <DrawerSection label="Boravak" icon={<CalendarDays className="h-3.5 w-3.5" />} />
               <div
                 className="flex items-center gap-2 rounded-xl px-4 py-3"
                 style={{ background: "rgb(38 46 44 / 0.50)", border: `1px solid ${TEAL.border}` }}
               >
                 <div className="flex flex-col items-center gap-0.5">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: T.secondary }}>Anreise</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: T.secondary }}>Dolazak</span>
                   <span className={`rounded-md px-2 py-0.5 text-[13px] font-semibold ${accent.icon}`}>{booking.arrival}</span>
                 </div>
                 <div className="flex flex-1 flex-col items-center gap-1">
@@ -373,11 +373,11 @@ useEffect(() => {
                     style={{ background: "rgb(217 171 78 / 0.14)", color: "#ddb055", outline: "1px solid rgb(217 171 78 / 0.28)" }}
                   >
                     <Moon className="h-2.5 w-2.5" style={{ color: "#ddb055" }} aria-hidden />
-                    {booking.nights} {booking.nights === 1 ? "Nacht" : "Nächte"}
+                    {booking.nights} {booking.nights === 1 ? "noć" : "noći"}
                   </span>
                 </div>
                 <div className="flex flex-col items-center gap-0.5">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: T.secondary }}>Abreise</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: T.secondary }}>Odlazak</span>
                   <span className="rounded-md px-2 py-0.5 text-[13px] font-medium"
                     style={{ background: "rgb(56 66 63 / 0.55)", color: T.primary }}>
                     {booking.departure}
@@ -387,9 +387,9 @@ useEffect(() => {
             </section>
 
             {/* 2 ── Payment block ─────────────────────────────────── */}
-            <section aria-label="Zahlung">
+            <section aria-label="Plaćanje">
               <DrawerSection
-                label="Zahlung"
+                label="Plaćanje"
                 icon={paymentPaid
                   ? <Check className="h-3.5 w-3.5" style={{ color: GREEN.text }} />
                   : <AlertTriangle className="h-3.5 w-3.5" style={{ color: "#e08060" }} />}
@@ -402,28 +402,28 @@ useEffect(() => {
                 <div className="flex gap-3">
                   <label className="flex flex-1 flex-col gap-1.5">
                     <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                      Gesamtbetrag
+                      Ukupan iznos
                     </span>
                     <input
                       type="text"
                       inputMode="numeric"
                       value={payment.amount}
                       onChange={(e) => onPaymentChange({ ...payment, amount: e.target.value })}
-                      placeholder="z. B. 300"
+                      placeholder="npr. 300"
                       className="w-full rounded-lg border px-3 py-2 text-[13px] bg-[#1a2220] input-teal transition-soft focus:outline-none"
                       style={{ color: T.primary, borderColor: TEAL.border }}
                     />
                   </label>
                   <label className="flex flex-1 flex-col gap-1.5">
                     <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                      Anzahlung
+                      Predujam
                     </span>
                     <input
                       type="text"
                       inputMode="numeric"
                       value={payment.deposit}
                       onChange={(e) => onPaymentChange({ ...payment, deposit: e.target.value })}
-                      placeholder="z. B. 100"
+                      placeholder="npr. 100"
                       className="w-full rounded-lg border px-3 py-2 text-[13px] bg-[#1a2220] input-teal transition-soft focus:outline-none"
                       style={{ color: T.primary, borderColor: TEAL.border }}
                     />
