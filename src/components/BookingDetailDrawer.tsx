@@ -434,7 +434,7 @@ useEffect(() => {
                   <div className="flex items-center justify-between rounded-lg px-3 py-2"
                     style={{ background: "rgb(217 171 78 / 0.10)", outline: "1px solid rgb(217 171 78 / 0.22)" }}>
                     <span className="text-[12px] font-medium" style={{ color: "#ddb055" }}>
-                      Noch zu zahlen
+                      Preostalo za platiti
                     </span>
                     <span className="text-[14px] font-bold" style={{ color: "#ddb055" }}>
                       {formatFt(remainingAmount(payment))}
@@ -445,7 +445,7 @@ useEffect(() => {
                 {/* Method pills */}
                 <div className="flex flex-col gap-1.5">
                   <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: T.secondary }}>
-                    Zahlungsmethode
+                    Način plaćanja
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {(["cash","transfer","paypal","booking","airbnb"] as PaymentMethod[]).map((m) => (
@@ -483,13 +483,13 @@ useEffect(() => {
     ? { background: "rgb(232 168 74 / 0.15)", color: "#e8a84a", outline: "1px solid rgb(232 168 74 / 0.45)" }
     : { background: CORAL.bg, color: CORAL.text, boxShadow: CORAL.glow }
 }
-                    aria-label={paymentPaid ? "Bezahlt — zum Zurücksetzen tippen" : "Ausstehend — zum Bestätigen tippen"}
+                    aria-label={paymentPaid ? "Plaćeno — dodirnite za poništavanje" : "Na čekanju — dodirnite za potvrdu"}
                   >
                     {paymentPaid
-  ? <><Check className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden /> Bezahlt</>
+  ? <><Check className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden /> Plaćeno</>
   : parseAmount(payment.deposit) > 0 && parseAmount(payment.amount) > 0
-    ? <><AlertTriangle className="h-3.5 w-3.5" strokeWidth={2} aria-hidden /> Teilweise bezahlt</>
-    : <><AlertTriangle className="h-3.5 w-3.5" strokeWidth={2} aria-hidden /> Ausstehend</>
+    ? <><AlertTriangle className="h-3.5 w-3.5" strokeWidth={2} aria-hidden /> Djelomično plaćeno</>
+    : <><AlertTriangle className="h-3.5 w-3.5" strokeWidth={2} aria-hidden /> Na čekanju</>
 }
                   </button>
                 </div>
@@ -498,9 +498,9 @@ useEffect(() => {
 
             {/* 3 ── Arrival Preparation (arriving only) ───────────── */}
             {isArriving && (
-              <section aria-label="Ankunftsvorbereitung">
+              <section aria-label="Priprema za dolazak">
                 <DrawerSection
-                  label="Ankunftsvorbereitung"
+                  label="Priprema za dolazak"
                   icon={<ClipboardCheck className="h-3.5 w-3.5" />}
                   allDone={arrivalAllDone}
                 />
@@ -508,7 +508,7 @@ useEffect(() => {
                 {/* Progress hint */}
                 <div className="mb-2 flex items-center justify-between px-0.5">
                   <span className="text-[11px]" style={{ color: T.secondary }}>
-                    {arrivalDoneCount} / {arrivalItems.length} erledigt
+                    {arrivalDoneCount} / {arrivalItems.length} riješeno
                   </span>
                   {/* Thin progress bar */}
                   <div
