@@ -285,7 +285,7 @@ useEffect(() => {
       }}
       aria-modal="true"
       role="dialog"
-      aria-label={`Details zu ${booking.apartment}`}
+      aria-label={`Detalji za ${booking.apartment}`}
     >
       <div
         ref={drawerRef}
@@ -328,7 +328,7 @@ useEffect(() => {
               onClick={onClose}
               className="pressable flex h-8 w-8 items-center justify-center rounded-full transition-soft"
               style={{ background: CORAL.bg, boxShadow: CORAL.glow }}
-              aria-label="Schließen"
+              aria-label="Zatvori"
             >
               <X className="h-4 w-4" style={{ color: CORAL.text }} />
             </button>
