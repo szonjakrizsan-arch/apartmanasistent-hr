@@ -540,23 +540,23 @@ useEffect(() => {
                   {/* Row 1 — Cleaning: auto-synced from linked departing booking's task */}
                   <ArrivalCheckRow
                     done={cleaningSync}
-                    label="Reinigung erledigt"
+                    label="Čišćenje obavljeno"
                     sublabel={prevCleaningDone !== undefined
-                      ? "Synchronisiert — aus der Reinigungsaufgabe des vorherigen Gasts"
-                      : "Automatisch — aus der Reinigungsaufgabe"}
+                      ? "Sinkronizirano — iz zadatka čišćenja prethodnog gosta"
+                      : "Automatski — iz zadatka čišćenja"}
                     readOnly
                   />
 
                   {/* Row 2 — Payment (read-only, derived) */}
                   <ArrivalCheckRow
                     done={paymentPaid}
-                    label="Zahlung geprüft"
+                    label="Plaćanje provjereno"
                     sublabel={
                       paymentPaid
-                        ? "Zahlung bestätigt"
+                        ? "Plaćanje potvrđeno"
                         : parseAmount(payment.deposit) > 0 && parseAmount(payment.amount) > 0
-                          ? `Zahlungsblock — Teilweise bezahlt, offen: ${formatFt(remainingAmount(payment))}`
-                          : "Zahlungsblock — Ausstehend"
+                          ? `Blok plaćanja — Djelomično plaćeno, preostalo: ${formatFt(remainingAmount(payment))}`
+                          : "Blok plaćanja — Na čekanju"
                     }
                     readOnly
                   />
@@ -564,24 +564,24 @@ useEffect(() => {
                   {/* Row 3 — Key prepared (manual) */}
                   <ArrivalCheckRow
                     done={detail.keyReady}
-                    label="Schlüssel bereitgelegt"
-                    sublabel="Zum Erledigen tippen"
+                    label="Ključevi pripremljeni"
+                    sublabel="Dodirnite za rješavanje"
                     onToggle={() => onDetailChange({ ...detail, keyReady: !detail.keyReady })}
                   />
 
                   {/* Row 4 — Check-in info sent (manual) */}
                   <ArrivalCheckRow
                   done={detail.checkinSent}
-                  label="Check-in-Infos gesendet"
-                  sublabel="Anreisehinweise, Zugangscode"
+                  label="Info za prijavu poslan"
+                  sublabel="Upute za dolazak, pristupni kod"
                   onToggle={() => onDetailChange({ ...detail, checkinSent: !detail.checkinSent })}
                   />
 
                   {/* Row 5 — Meldeschein / guest registration (manual) */}
                   <ArrivalCheckRow
                   done={detail.ntakDone}
-                  label="Meldeschein-Kontrolle"
-                  sublabel="Gästeregistrierung und Meldepflicht"
+                  label="Prijava gosta"
+                  sublabel="Registracija gosta i obveza prijave"
                   onToggle={() => onDetailChange({ ...detail, ntakDone: !detail.ntakDone })}
                   isLast
                   />
@@ -593,7 +593,7 @@ useEffect(() => {
                     className="mt-2 text-center text-[11px] font-medium"
                     style={{ color: GREEN.text, opacity: 0.85 }}
                   >
-                    Alle Vorbereitungen abgeschlossen · Gast kann einziehen ✓
+                    Sve pripreme završene · Gost može useliti ✓
                   </p>
                 )}
               </section>
@@ -601,8 +601,8 @@ useEffect(() => {
 
             {/* 4 ── Cleaning task (departing only) ─────────────────── */}
             {isDeparting && (
-              <section aria-label="Reinigungsaufgabe">
-                <DrawerSection label="Reinigung" icon={<Sparkles className="h-3.5 w-3.5" />} />
+              <section aria-label="Zadatak čišćenja">
+                <DrawerSection label="Čišćenje" icon={<Sparkles className="h-3.5 w-3.5" />} />
                 <button
                   type="button"
                   onClick={() => onDetailChange({ ...detail, cleaningDone: !detail.cleaningDone })}
@@ -612,7 +612,7 @@ useEffect(() => {
                       ? { background: GREEN.bg, borderColor: GREEN.border }
                       : { background: "rgb(30 40 38 / 0.70)", borderColor: TEAL.border }
                   }
-                  aria-label={detail.cleaningDone ? "Reinigung erledigt" : "Reinigung als erledigt markieren"}
+                  aria-label={detail.cleaningDone ? "Čišćenje obavljeno" : "Označi čišćenje kao obavljeno"}
                 >
                   <span
                     className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-soft"
