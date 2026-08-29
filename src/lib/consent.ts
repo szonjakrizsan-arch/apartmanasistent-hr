@@ -1,27 +1,30 @@
 /**
- * Cookie-Einwilligung und Marketing-Tracking (Google Ads + Meta Pixel).
+ * Privola za kolačiće i marketinško praćenje (Google Ads + Meta Pixel).
  *
- * Google Ads und Meta Pixel werden NICHT mehr automatisch in index.html
- * geladen. Stattdessen prüft dieses Modul beim App-Start, ob bereits eine
- * Einwilligung gespeichert ist:
- *   - "granted" -> Tracking-Skripte werden sofort geladen (kein Banner).
- *   - "denied"  -> nichts wird geladen (kein Banner).
- *   - noch keine Entscheidung -> CookieConsentBanner.tsx zeigt den Banner an;
- *     die Nutzerin/der Nutzer entscheidet, loadTrackingScripts() wird bei
- *     Zustimmung von dort aufgerufen.
+ * Google Ads i Meta Pixel se VIŠE NE učitavaju automatski u index.html.
+ * Umjesto toga, ovaj modul pri pokretanju aplikacije provjerava je li
+ * privola već pohranjena:
+ *   - "granted" -> skripte za praćenje se odmah učitavaju (bez bannera).
+ *   - "denied"  -> ništa se ne učitava (bez bannera).
+ *   - odluka još ne postoji -> CookieConsentBanner.tsx prikazuje banner;
+ *     korisnica/korisnik odlučuje, loadTrackingScripts() se poziva
+ *     odande nakon suglasnosti.
  *
- * Ohne diesen Umweg würden Google Ads und Meta Pixel bei jedem Seitenaufruf
- * sofort Tracking-Cookies setzen — auch vor jeder Einwilligung. Das verstößt
- * gegen DSGVO/ePrivacy. Diese Datei stellt sicher, dass das nicht passiert.
+ * Bez ovog zaobilaznog puta, Google Ads i Meta Pixel bi kod svakog
+ * posjeta stranici odmah postavili kolačiće za praćenje — čak i prije
+ * bilo kakve privole. To je protivno OUZP-u/ePrivacy direktivi. Ova
+ * datoteka osigurava da se to ne dogodi.
  */
 
 const CONSENT_KEY = "aa_cookie_consent"; // "granted" | "denied"
 
-const GOOGLE_ADS_ID = "AW-18334546190";
+// TODO(HR lansiranje): ovdje treba postaviti zaseban HR Google Ads ID
+// i zaseban HR Meta Pixel ID — ne smiju se koristiti isti ID-jevi kao
+// za apartmentassistant.de, jer bi se inače konverzije miješale
+// između tržišta.
+const GOOGLE_ADS_ID = "";
 
-// Eigener Meta Pixel für apartmentassistant.de ("Apartment Assistant DE"),
-// getrennt vom ungarischen Pixel — Conversions mischen sich dadurch nicht.
-const META_PIXEL_ID = "1381708490589694";
+const META_PIXEL_ID = "";
 
 declare global {
   interface Window {
@@ -52,23 +55,25 @@ export function storeConsent(value: ConsentValue): void {
   try {
     localStorage.setItem(CONSENT_KEY, value);
   } catch {
-    // localStorage nicht verfügbar — Banner erscheint bei jedem Besuch,
-    // aber die App funktioniert weiterhin normal.
+    // localStorage nije dostupan — banner se prikazuje kod svakog posjeta,
+    // ali aplikacija i dalje normalno radi.
   }
 }
 
 let scriptsLoaded = false;
 
 /**
- * Lädt die Google-Ads- und Meta-Pixel-Basiscodes.
- * Nur aufrufen, nachdem die Einwilligung tatsächlich erteilt wurde.
+ * Učitava osnovne kodove za Google Ads i Meta Pixel.
+ * Poziva se samo nakon što je privola stvarno dana.
  */
 export function loadTrackingScripts(): void {
   if (scriptsLoaded) return;
+  if (!GOOGLE_ADS_ID && !META_PIXEL_ID) return; // ID-jevi još nisu postavljeni za HR
   scriptsLoaded = true;
 
-  // --- Google Ads: Basis-Tag laden. Das eigentliche Konversionsereignis
-  //     wird separat ausgelöst, siehe lib/googleAds.ts. ---
+  // --- Google Ads: učitava se osnovna oznaka. Stvarni konverzijski
+  //     događaj pokreće se zasebno, vidi lib/googleAds.ts. ---
+  if (GOOGLE_ADS_ID) {
   const gaScript = document.createElement("script");
   gaScript.async = true;
   gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
@@ -80,12 +85,14 @@ export function loadTrackingScripts(): void {
   };
   window.gtag("js", new Date());
   window.gtag("config", GOOGLE_ADS_ID);
+  }
 
-  // --- Meta Pixel: Basiscode, nur init (kein automatisches PageView-Event).
-  //     CompleteRegistration wird separat ausgelöst, siehe lib/metaPixel.ts.
-  //     Offizielles Meta-Snippet, hier bewusst mit `any` statt strikter
-  //     Typisierung, da es sich um unverändertes Drittanbieter-Boilerplate
-  //     handelt. ---
+  // --- Meta Pixel: osnovni kod, samo init (bez automatskog PageView eventa).
+  //     CompleteRegistration se pokreće zasebno, vidi lib/metaPixel.ts.
+  //     Službeni Meta snippet, ovdje namjerno s `any` umjesto strogog
+  //     tipiziranja, jer se radi o nepromijenjenom boilerplateu
+  //     treće strane. ---
+  if (META_PIXEL_ID) {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   (function (f: any, b: any, e: string, v: string) {
     if (f.fbq) return;
@@ -107,12 +114,13 @@ export function loadTrackingScripts(): void {
   /* eslint-enable @typescript-eslint/no-explicit-any */
 
   window.fbq?.("init", META_PIXEL_ID);
+  }
 }
 
 /**
- * Beim App-Start einmal aufrufen (siehe main.tsx). Lädt die Tracking-Skripte
- * sofort, falls bei einem früheren Besuch bereits Zustimmung erteilt wurde —
- * ohne den Banner erneut anzuzeigen.
+ * Poziva se jednom pri pokretanju aplikacije (vidi main.tsx). Odmah učitava
+ * skripte za praćenje ako je privola već dana kod prethodnog posjeta —
+ * bez ponovnog prikazivanja bannera.
  */
 export function initConsentOnLoad(): void {
   if (getStoredConsent() === "granted") {

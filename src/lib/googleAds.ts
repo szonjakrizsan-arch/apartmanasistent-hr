@@ -1,12 +1,14 @@
 /**
  * Google Ads — conversion tracking.
  *
- * The gtag.js base code is loaded statically in index.html's <head>
- * (gtag('config', 'AW-18334546190')), matching Google's expected
- * installation pattern.
+ * TODO(HR launch): this file currently has no conversion ID configured.
+ * Once a Google Ads account/conversion action exists for the HR market,
+ * set CONVERSION_SEND_TO below. Until then, trackRegistrationConversion()
+ * is a safe no-op.
  *
- * This file only fires the one meaningful conversion event: a
- * successful registration. No passive/automatic tracking happens.
+ * Do NOT reuse the DE conversion ID (AW-18334546190/...) here — that
+ * would attribute Croatian registrations to the German campaign and
+ * corrupt both markets' reporting.
  */
 
 declare global {
@@ -15,18 +17,17 @@ declare global {
   }
 }
 
+const CONVERSION_SEND_TO = ""; // e.g. "AW-XXXXXXXXXX/YYYYYYYYYYYYYYYY" once set up for HR
+
 /**
- * Fire the "Registrierung (DE)" conversion event.
+ * Fire the registration conversion event for the HR market.
  * Call this once, right after supabase.auth.signUp() succeeds.
- *
- * Uses the same Google Ads account as the Hungarian site (AW-18334546190),
- * but its own dedicated conversion action for the German site, so HU and
- * DE registrations are reported separately.
  */
 export function trackRegistrationConversion(): void {
+  if (!CONVERSION_SEND_TO) return;
   try {
     window.gtag?.("event", "conversion", {
-      send_to: "AW-18334546190/a3VVCKr68dwcEI7yy6ZE",
+      send_to: CONVERSION_SEND_TO,
       value: 1.0,
       currency: "EUR",
     });
