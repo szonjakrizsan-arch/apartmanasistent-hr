@@ -238,7 +238,7 @@ export function BookingsScreen({ appState, ical, openBooking, setOpenBooking }: 
               <div className="mb-3.5 flex items-center gap-2.5">
                 <CalendarClock className="h-3.5 w-3.5 shrink-0 text-text-muted" aria-hidden />
                 <h2 id="future-bookings-heading" className="text-[11px] font-bold uppercase tracking-widest text-text-muted">
-                  Anstehende Buchungen
+                  Nadolazeće rezervacije
                 </h2>
                 <div className="flex-1 border-t border-dashed border-border-faint/50" aria-hidden />
                 <span className="text-[11px] text-text-muted">{futureBookings.length}</span>
@@ -256,7 +256,7 @@ export function BookingsScreen({ appState, ical, openBooking, setOpenBooking }: 
                     className="pressable flex w-full items-center justify-between transition-soft"
                     style={{ background: "linear-gradient(180deg, rgb(38 46 44 / 0.0) 0%, rgb(42 52 50 / 0.70) 100%)", borderTop: "1px solid rgb(56 66 63 / 0.22)", padding: "6px 12px 10px" }}>
                     <span style={{ fontSize: "11px", fontWeight: 500, color: "rgb(107 103 99 / 0.80)" }}>
-                      Weitere {futureBookings.length - FUTURE_PREVIEW} {(futureBookings.length - FUTURE_PREVIEW) === 1 ? "Buchung" : "Buchungen"}
+                      Još {futureBookings.length - FUTURE_PREVIEW} {(futureBookings.length - FUTURE_PREVIEW) === 1 ? "rezervacija" : "rezervacija"}
                     </span>
                     <ChevronRight className="h-3.5 w-3.5" style={{ color: "rgb(158 152 146 / 0.90)" }} aria-hidden />
                   </button>
