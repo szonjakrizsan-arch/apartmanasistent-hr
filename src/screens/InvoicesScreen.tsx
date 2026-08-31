@@ -11,28 +11,28 @@ interface InvoicesScreenProps {
 
 const displayConfig = {
   paid: {
-    label: "Bezahlt",
+    label: "Plaćeno",
     color: "#5abf8a",
     bg: "rgb(90 191 138 / 0.12)",
     border: "rgb(90 191 138 / 0.28)",
     Icon: CheckCircle2,
   },
   pending: {
-    label: "Ausstehend",
+    label: "Na čekanju",
     color: "#ddb055",
     bg: "rgb(217 171 78 / 0.12)",
     border: "rgb(217 171 78 / 0.28)",
     Icon: Receipt,
   },
   overdue: {
-    label: "Überfällig",
+    label: "Zakašnjelo",
     color: "#e08060",
     bg: "rgb(220 132 96 / 0.12)",
     border: "rgb(220 132 96 / 0.30)",
     Icon: AlertCircle,
   },
   partial: {
-    label: "Teilweise",
+    label: "Djelomično",
     color: "#e8a84a",
     bg: "rgb(232 168 74 / 0.15)",
     border: "rgb(232 168 74 / 0.45)",
@@ -51,8 +51,8 @@ export function InvoicesScreen({ appState, ical }: InvoicesScreenProps) {
   return (
     <div className="flex flex-col gap-5 pb-2">
       <SectionHeader
-        title="Rechnungen"
-        subtitle={pendingCount > 0 ? `${pendingCount} offen` : "Alles beglichen"}
+        title="Računi"
+        subtitle={pendingCount > 0 ? `${pendingCount} otvoreno` : "Sve podmireno"}
       />
 
       {invoices.length === 0 ? (
@@ -62,10 +62,10 @@ export function InvoicesScreen({ appState, ical }: InvoicesScreenProps) {
         >
           <Banknote className="h-8 w-8 text-text-muted" />
           <p className="text-[13px] text-text-secondary">
-            Keine abrechenbare Buchung.
+            Nema rezervacije za obračun.
           </p>
           <p className="text-[11px] text-text-muted">
-            Geben Sie einen Betrag in den Buchungsdetails an.
+            Unesite iznos u detaljima rezervacije.
           </p>
         </div>
       ) : (
@@ -106,7 +106,7 @@ export function InvoicesScreen({ appState, ical }: InvoicesScreenProps) {
                       }}
                       className="pressable shrink-0 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition-soft"
                       style={{ background: cfg.bg, color: cfg.color, outline: `1px solid ${cfg.border}` }}
-                      aria-label={`Status: ${cfg.label} — zum Wechseln tippen`}
+                      aria-label={`Status: ${cfg.label} — dodirnite za promjenu`}
                     >
                       <StatusIcon className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
                       {cfg.label}
@@ -116,20 +116,20 @@ export function InvoicesScreen({ appState, ical }: InvoicesScreenProps) {
                   {/* Amount row */}
                   <div className="mt-3 flex items-end justify-between">
                     <div>
-                      <p className="text-[10px] uppercase tracking-wider text-text-muted">Betrag</p>
+                      <p className="text-[10px] uppercase tracking-wider text-text-muted">Iznos</p>
                       <p className="text-[20px] font-bold" style={{ color: "#7dd4dd" }}>
                         {inv.amount}
                       </p>
                       {parseAmount(inv.deposit) > 0 && inv.displayStatus !== "paid" && (
                         <p className="mt-1 text-[11px]" style={{ color: "#ddb055" }}>
-                          Anzahlung: {inv.deposit} · Noch zu zahlen: <span className="font-bold">{formatFt(inv.remaining)}</span>
+                          Predujam: {inv.deposit} · Preostalo za platiti: <span className="font-bold">{formatFt(inv.remaining)}</span>
                         </p>
                       )}
                     </div>
                     {inv.displayStatus === "overdue" && (
                       <span className="flex items-center gap-1 text-[11px] font-medium" style={{ color: "#e08060" }}>
                         <AlertCircle className="h-3.5 w-3.5" aria-hidden />
-                        Zahlung erforderlich
+                        Potrebno je plaćanje
                       </span>
                     )}
                   </div>
@@ -142,7 +142,7 @@ export function InvoicesScreen({ appState, ical }: InvoicesScreenProps) {
 
       {invoices.length > 0 && (
         <p className="text-center text-[11px] text-text-muted">
-          {paidCount} / {invoices.length} beglichen · Rechnungen aus Buchungen abgeleitet
+          {paidCount} / {invoices.length} podmireno · Računi generirani iz rezervacija
         </p>
       )}
     </div>
