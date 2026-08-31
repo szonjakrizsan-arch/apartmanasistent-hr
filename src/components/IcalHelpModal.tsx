@@ -33,7 +33,7 @@ interface Tab {
 const TABS: Tab[] = [
   {
     id: "start",
-    label: "Erste Schritte",
+    label: "Prvi koraci",
     emoji: "🚀",
     color: "#7dd4dd",
     activeBg: "rgb(86 176 187 / 0.18)",
@@ -60,7 +60,7 @@ const TABS: Tab[] = [
   },
   {
     id: "google",
-    label: "Google Kalender",
+    label: "Google kalendar",
     emoji: "🔴",
     color: "#ea4335",
     activeBg: "rgb(234 67 53 / 0.14)",
@@ -135,26 +135,26 @@ function ErsteSchritteContent() {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <h3 className="text-[15px] font-semibold mb-1" style={{ color: T.primary }}>Willkommen!</h3>
+        <h3 className="text-[15px] font-semibold mb-1" style={{ color: T.primary }}>Dobrodošli!</h3>
         <p className="text-[13px] leading-relaxed" style={{ color: T.secondary }}>
-          Dieses Hilfe-Center führt Sie durch die ersten Einstellungen von Apartment Assistant. Die Anleitungen sind für Einsteiger gedacht und erklären daher jeden wichtigen Schritt im Detail.
+          Ovaj centar za pomoć vodi vas kroz prva postavljanja Apartman Asistenta. Upute su namijenjene početnicima, stoga detaljno objašnjavaju svaki važan korak.
         </p>
       </div>
 
       <div className="rounded-xl p-4 flex flex-col gap-3" style={{ background: "rgb(38 46 44 / 0.50)", border: `1px solid ${TEAL.border}` }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: T.secondary }}>Was ist iCal?</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: T.secondary }}>Što je iCal?</p>
         <p className="text-[13px] leading-relaxed" style={{ color: T.primary }}>
-          iCal ist eine internetbasierte Kalenderverbindung. Damit können verschiedene Buchungsplattformen (z. B. Booking.com oder Airbnb) ihren Buchungskalender automatisch mit Apartment Assistant teilen — Sie müssen die Gästedaten also nicht mehr von Hand eintragen.
+          iCal je internetska veza kalendara. Pomoću nje različite platforme za rezervacije (npr. Booking.com ili Airbnb) mogu automatski dijeliti svoj kalendar rezervacija s Apartman Asistentom — podatke o gostima više ne morate ručno unositi.
         </p>
       </div>
 
       <div>
-        <p className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: T.secondary }}>Bevor Sie beginnen</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: T.secondary }}>Prije nego što počnete</p>
         <div className="flex flex-col gap-2">
           {[
-            "Ein Apartment-Assistant-Konto",
-            "Mindestens eine hinzugefügte Ferienwohnung",
-            "Der von der Buchungsplattform kopierte iCal-Link",
+            "Račun na Apartman Asistentu",
+            "Barem jedan dodani apartman",
+            "iCal poveznica kopirana s platforme za rezervacije",
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-3 rounded-lg px-3 py-2" style={{ background: "rgb(86 176 187 / 0.06)", border: `1px solid ${TEAL.dim}` }}>
               <span className="text-[13px]">✓</span>
@@ -165,16 +165,16 @@ function ErsteSchritteContent() {
       </div>
 
       <div>
-        <p className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: T.secondary }}>iCal-Link zur App hinzufügen</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest mb-3" style={{ color: T.secondary }}>Dodavanje iCal poveznice u aplikaciju</p>
         <div className="flex flex-col gap-3">
           {[
-            "Tippen Sie auf + Neue Ferienwohnung hinzufügen.",
-            "Geben Sie den Namen der Ferienwohnung ein und wählen Sie eine Farbe. Tippen Sie auf Hinzufügen.",
-            "Die Ferienwohnung erscheint in der Liste. Tippen Sie auf den Pfeil nach unten auf der rechten Seite.",
-            "Tippen Sie auf + iCal-Feed hinzufügen.",
-            "Wählen Sie die Buchungsplattform aus (Airbnb, Booking.com, Google Kalender usw.).",
-            "Fügen Sie den kopierten Link (https://...) in das Feld iCal-URL ein. Tippen Sie auf Speichern.",
-            "Wenn Sie mehrere Buchungsplattformen nutzen, wiederholen Sie die Schritte 4–6 für jede Plattform.",
+            "Dodirnite + Dodaj novi apartman.",
+            "Unesite naziv apartmana i odaberite boju. Dodirnite Dodaj.",
+            "Apartman se pojavljuje na popisu. Dodirnite strelicu prema dolje na desnoj strani.",
+            "Dodirnite + Dodaj iCal feed.",
+            "Odaberite platformu za rezervacije (Airbnb, Booking.com, Google kalendar itd.).",
+            "Umetnite kopiranu poveznicu (https://...) u polje iCal URL. Dodirnite Spremi.",
+            "Ako koristite više platformi za rezervacije, ponovite korake 4–6 za svaku platformu.",
           ].map((step, i) => (
             <Step key={i} number={i + 1} text={step} />
           ))}
@@ -182,11 +182,11 @@ function ErsteSchritteContent() {
       </div>
 
       <InfoBox>
-        Buchungen erscheinen nicht immer sofort — wie schnell eine neue Buchung sichtbar wird, hängt von der Buchungsplattform ab. Das ist völlig normal.
+        Rezervacije se ne pojavljuju uvijek odmah — koliko brzo nova rezervacija postaje vidljiva ovisi o platformi za rezervacije. To je posve normalno.
       </InfoBox>
 
       <InfoBox>
-        Buchungsplattformen ändern gelegentlich ihre Oberfläche. Wenn ein Button oder Menüpunkt an anderer Stelle erscheint als in der Anleitung, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.
+        Platforme za rezervacije povremeno mijenjaju svoje sučelje. Ako se gumb ili stavka izbornika pojavi na drugom mjestu nego u uputama, potražite istu funkciju u aktualnom sučelju.
       </InfoBox>
     </div>
   );
@@ -196,23 +196,23 @@ function AirbnbContent() {
   return (
     <div className="flex flex-col gap-5">
       <div className="rounded-xl p-4 flex flex-col gap-1" style={{ background: "rgb(255 90 95 / 0.08)", border: "1px solid rgb(255 90 95 / 0.25)" }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#ff8a8e" }}>Erforderlich</p>
-        <p className="text-[13px]" style={{ color: T.primary }}>Airbnb-Gastgeberkonto + Zugriff auf die Unterkunft</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#ff8a8e" }}>Potrebno</p>
+        <p className="text-[13px]" style={{ color: T.primary }}>Airbnb domaćinski račun + pristup smještaju</p>
       </div>
       <div className="flex flex-col gap-3">
         {[
-          "Öffnen Sie airbnb.de und melden Sie sich bei Ihrem Konto an.",
-          "Klicken Sie oben rechts auf Gastgeberaufgaben. Falls nicht sichtbar, wählen Sie Zur Gastgeberansicht wechseln.",
-          "Klicken Sie in der oberen Menüleiste auf Inserate.",
-          "Klicken Sie auf die Unterkunft, die Sie verbinden möchten.",
-          "Klicken Sie im Inserat auf den Reiter Preise und Verfügbarkeit.",
-          "Scrollen Sie nach unten, bis Sie den Bereich Kalendersynchronisierung finden.",
-          "Klicken Sie auf Kalender exportieren.",
-          "Kopieren Sie den angezeigten Link — das ist die iCal-URL.",
-          "Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Airbnb-Feed hinzu.",
+          "Otvorite airbnb.hr i prijavite se na svoj račun.",
+          "Kliknite gore desno na Domaćinski zadaci. Ako nije vidljivo, odaberite Prijeđi na prikaz domaćina.",
+          "Kliknite u gornjem izborniku na Oglasi.",
+          "Kliknite na smještaj koji želite povezati.",
+          "U oglasu kliknite na karticu Cijene i dostupnost.",
+          "Pomaknite se prema dolje dok ne pronađete odjeljak Sinkronizacija kalendara.",
+          "Kliknite na Izvoz kalendara.",
+          "Kopirajte prikazanu poveznicu — to je iCal URL.",
+          "Vratite se u Apartman Asistent i dodajte tu poveznicu u Airbnb feed.",
         ].map((step, i) => <Step key={i} number={i + 1} text={step} />)}
       </div>
-      <InfoBox>Die Airbnb-Oberfläche kann sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.</InfoBox>
+      <InfoBox>Sučelje Airbnb-a povremeno se mijenja. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.</InfoBox>
     </div>
   );
 }
@@ -221,21 +221,21 @@ function BookingContent() {
   return (
     <div className="flex flex-col gap-5">
       <div className="rounded-xl p-4 flex flex-col gap-1" style={{ background: "rgb(0 130 200 / 0.08)", border: "1px solid rgb(0 130 200 / 0.25)" }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#5ab4f0" }}>Erforderlich</p>
-        <p className="text-[13px]" style={{ color: T.primary }}>Booking.com-Partnerkonto + Extranet-Zugang</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#5ab4f0" }}>Potrebno</p>
+        <p className="text-[13px]" style={{ color: T.primary }}>Booking.com partnerski račun + pristup Extranetu</p>
       </div>
       <div className="flex flex-col gap-3">
         {[
-          "Öffnen Sie booking.com und melden Sie sich mit Ihrem Partnerkonto an.",
-          "Nach der Anmeldung öffnen Sie das Booking.com Extranet — hier verwalten Sie Ihre Unterkunft.",
-          "Suchen Sie im Hauptmenü des Extranets den Menüpunkt Zimmer & Verfügbarkeit oder Kalender.",
-          "Öffnen Sie den Bereich Kalendersynchronisierung (iCal sync / Calendar sync).",
-          "Suchen Sie die Option iCal-Export / Kalender exportieren.",
-          "Kopieren Sie den angezeigten Link — das ist die iCal-URL.",
-          "Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Booking.com-Feed hinzu.",
+          "Otvorite booking.com i prijavite se svojim partnerskim računom.",
+          "Nakon prijave otvorite Booking.com Extranet — ovdje upravljate svojim smještajem.",
+          "U glavnom izborniku Extraneta potražite stavku Sobe i dostupnost ili Kalendar.",
+          "Otvorite odjeljak Sinkronizacija kalendara (iCal sync / Calendar sync).",
+          "Potražite opciju iCal izvoz / Izvoz kalendara.",
+          "Kopirajte prikazanu poveznicu — to je iCal URL.",
+          "Vratite se u Apartman Asistent i dodajte tu poveznicu u Booking.com feed.",
         ].map((step, i) => <Step key={i} number={i + 1} text={step} />)}
       </div>
-      <InfoBox>Die Oberfläche und die Menüpunkte des Booking.com Extranets können sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.</InfoBox>
+      <InfoBox>Sučelje i stavke izbornika Booking.com Extraneta povremeno se mijenjaju. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.</InfoBox>
     </div>
   );
 }
@@ -244,22 +244,22 @@ function GoogleContent() {
   return (
     <div className="flex flex-col gap-5">
       <div className="rounded-xl p-4 flex flex-col gap-1" style={{ background: "rgb(234 67 53 / 0.08)", border: "1px solid rgb(234 67 53 / 0.25)" }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#f87171" }}>Erforderlich</p>
-        <p className="text-[13px]" style={{ color: T.primary }}>Google-Konto + Buchungskalender in Google Kalender • Nur am Computer</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#f87171" }}>Potrebno</p>
+        <p className="text-[13px]" style={{ color: T.primary }}>Google račun + kalendar rezervacija u Google kalendaru • Samo na računalu</p>
       </div>
       <div className="flex flex-col gap-3">
         {[
-          "Öffnen Sie calendar.google.com und melden Sie sich mit Ihrem Google-Konto an.",
-          "Suchen Sie links unter Meine Kalender den Kalender, den Sie für Ihre Unterkunft verwenden.",
-          "Bewegen Sie den Mauszeiger über den Kalendernamen und klicken Sie auf die drei senkrechten Punkte.",
-          "Wählen Sie im erscheinenden Menü Einstellungen und Freigabe.",
-          "Suchen Sie im linken Menü den Punkt Kalender integrieren (scrollen Sie ggf. nach unten).",
-          "Suchen Sie den Bereich Geheime Adresse im iCal-Format. Dort steht Ihr eindeutiger Link.",
-          "Klicken Sie auf das Kopieren-Symbol oder kopieren Sie den gesamten Link.",
-          "Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Google-Kalender-Feed hinzu.",
+          "Otvorite calendar.google.com i prijavite se svojim Google računom.",
+          "Lijevo pod Moji kalendari potražite kalendar koji koristite za svoj smještaj.",
+          "Pomaknite pokazivač miša preko naziva kalendara i kliknite na tri okomite točke.",
+          "U izborniku koji se pojavi odaberite Postavke i dijeljenje.",
+          "U lijevom izborniku potražite stavku Integriranje kalendara (po potrebi se pomaknite prema dolje).",
+          "Potražite odjeljak Tajna adresa u iCal formatu. Ondje se nalazi vaša jedinstvena poveznica.",
+          "Kliknite na ikonu kopiranja ili kopirajte cijelu poveznicu.",
+          "Vratite se u Apartman Asistent i dodajte tu poveznicu u feed Google kalendara.",
         ].map((step, i) => <Step key={i} number={i + 1} text={step} />)}
       </div>
-      <InfoBox>Google kann den Aufbau von Kalender gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.</InfoBox>
+      <InfoBox>Google povremeno mijenja izgled kalendara. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.</InfoBox>
     </div>
   );
 }
@@ -268,24 +268,24 @@ function VrboContent() {
   return (
     <div className="flex flex-col gap-5">
       <div className="rounded-xl p-4 flex flex-col gap-1" style={{ background: "rgb(124 58 237 / 0.08)", border: "1px solid rgb(124 58 237 / 0.25)" }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#a78bfa" }}>Erforderlich</p>
-        <p className="text-[13px]" style={{ color: T.primary }}>VRBO-Vermieterkonto + Zugriff auf die Unterkunft</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#a78bfa" }}>Potrebno</p>
+        <p className="text-[13px]" style={{ color: T.primary }}>VRBO iznajmljivački račun + pristup smještaju</p>
       </div>
       <div className="flex flex-col gap-3">
         {[
-          "Öffnen Sie vrbo.com und melden Sie sich in Ihrem Vermieterkonto an (Owner Dashboard).",
-          "Falls Sie mehrere Objekte verwalten, wählen Sie das passende aus.",
-          "Klicken Sie im linken Menü auf Kalender (Calendar).",
-          "Suchen Sie die Option Import & Export (zwei aufeinander zeigende Pfeile).",
-          "Klicken Sie auf Kalender exportieren (Export calendar).",
-          "Klicken Sie im erscheinenden Fenster auf URL kopieren (Copy URL).",
-          "Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim VRBO-Feed hinzu.",
+          "Otvorite vrbo.com i prijavite se u svoj iznajmljivački račun (Owner Dashboard).",
+          "Ako upravljate s više objekata, odaberite odgovarajući.",
+          "U lijevom izborniku kliknite na Kalendar (Calendar).",
+          "Potražite opciju Uvoz i izvoz (dvije strelice koje pokazuju jedna prema drugoj).",
+          "Kliknite na Izvoz kalendara (Export calendar).",
+          "U prozoru koji se pojavi kliknite na Kopiraj URL (Copy URL).",
+          "Vratite se u Apartman Asistent i dodajte tu poveznicu u VRBO feed.",
         ].map((step, i) => <Step key={i} number={i + 1} text={step} />)}
       </div>
       <InfoBox type="warn">
-        Auf der VRBO-Oberfläche kann ein Kästchen „Include tentative reservations" erscheinen. Wenn Sie den iCal-Link für Apartment Assistant verwenden, lassen Sie es deaktiviert.
+        Na VRBO sučelju može se pojaviti kućica „Include tentative reservations". Ako iCal poveznicu koristite za Apartman Asistent, ostavite je isključenom.
       </InfoBox>
-      <InfoBox>VRBO kann seine Oberfläche gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.</InfoBox>
+      <InfoBox>VRBO povremeno mijenja svoje sučelje. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.</InfoBox>
     </div>
   );
 }
@@ -294,20 +294,20 @@ function TripadvisorContent() {
   return (
     <div className="flex flex-col gap-5">
       <div className="rounded-xl p-4 flex flex-col gap-1" style={{ background: "rgb(52 211 153 / 0.06)", border: "1px solid rgb(52 211 153 / 0.20)" }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#34d399" }}>Erforderlich</p>
-        <p className="text-[13px]" style={{ color: T.primary }}>TripAdvisor-Rentals-Eigentümerkonto + Zugriff auf die Unterkunft</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#34d399" }}>Potrebno</p>
+        <p className="text-[13px]" style={{ color: T.primary }}>TripAdvisor Rentals vlasnički račun + pristup smještaju</p>
       </div>
       <div className="flex flex-col gap-3">
         {[
-          "Öffnen Sie tripadvisor.com/rentals und melden Sie sich in Ihrem Eigentümerkonto an.",
-          "Falls Sie mehrere Unterkünfte verwalten, wählen Sie die passende aus.",
-          "Klicken Sie in der oberen Menüleiste auf den Reiter Kalender (Calendar).",
-          "Suchen Sie auf der Kalenderseite den Button Kalender exportieren (Export calendar), meist rechts oder oben.",
-          "Klicken Sie im erscheinenden Fenster auf Link kopieren (Copy Link / Copy to clipboard).",
-          "Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim TripAdvisor-Feed hinzu.",
+          "Otvorite tripadvisor.com/rentals i prijavite se u svoj vlasnički račun.",
+          "Ako upravljate s više smještaja, odaberite odgovarajući.",
+          "U gornjem izborniku kliknite na karticu Kalendar (Calendar).",
+          "Na stranici kalendara potražite gumb Izvoz kalendara (Export calendar), obično desno ili gore.",
+          "U prozoru koji se pojavi kliknite na Kopiraj poveznicu (Copy Link / Copy to clipboard).",
+          "Vratite se u Apartman Asistent i dodajte tu poveznicu u TripAdvisor feed.",
         ].map((step, i) => <Step key={i} number={i + 1} text={step} />)}
       </div>
-      <InfoBox>Die Oberfläche von TripAdvisor Rentals kann sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.</InfoBox>
+      <InfoBox>Sučelje TripAdvisor Rentals povremeno se mijenja. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.</InfoBox>
     </div>
   );
 }
@@ -316,156 +316,156 @@ function ExpediaContent() {
   return (
     <div className="flex flex-col gap-5">
       <InfoBox type="warn">
-        Im Expedia Partner Central ist der iCal-Export nicht für jede Unterkunft verfügbar. Bei manchen Unterkunftstypen unterstützt Expedia ausschließlich die Nutzung eines professionellen Channel-Manager-Systems.
+        U Expedia Partner Centralu iCal izvoz nije dostupan za svaki smještaj. Kod nekih vrsta smještaja Expedia podržava isključivo korištenje profesionalnog sustava upravitelja kanala (channel managera).
       </InfoBox>
       <div className="rounded-xl p-4 flex flex-col gap-1" style={{ background: "rgb(251 191 36 / 0.06)", border: "1px solid rgb(251 191 36 / 0.20)" }}>
-        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Erforderlich</p>
-        <p className="text-[13px]" style={{ color: T.primary }}>Expedia-Partner-Central-Konto + Zugriff auf die Unterkunft</p>
+        <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Potrebno</p>
+        <p className="text-[13px]" style={{ color: T.primary }}>Expedia Partner Central račun + pristup smještaju</p>
       </div>
       <div className="flex flex-col gap-3">
         {[
-          "Öffnen Sie expediapartnercentral.com und melden Sie sich mit Ihrem Partnerkonto an.",
-          "Suchen Sie im Hauptmenü den Punkt Zimmer und Preise (Rooms and Rates).",
-          "Wählen Sie Zimmertypen und Preispläne (Room types and Rate plans).",
-          "Suchen Sie die Option Kalender verbinden (Connect calendars).",
-          "Falls Sie mehrere Zimmer verwalten, wählen Sie die passende Unterkunft aus.",
-          "Scrollen Sie zum Bereich Expedia-Group-Kalenderexport und klicken Sie auf Link erstellen (Create link).",
-          "Kopieren Sie den erstellten Link.",
-          "Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Expedia-Feed hinzu.",
+          "Otvorite expediapartnercentral.com i prijavite se svojim partnerskim računom.",
+          "U glavnom izborniku potražite stavku Sobe i cijene (Rooms and Rates).",
+          "Odaberite Vrste soba i cjenovni planovi (Room types and Rate plans).",
+          "Potražite opciju Povezivanje kalendara (Connect calendars).",
+          "Ako upravljate s više soba, odaberite odgovarajući smještaj.",
+          "Pomaknite se do odjeljka Izvoz kalendara Expedia Group i kliknite na Izradi poveznicu (Create link).",
+          "Kopirajte izrađenu poveznicu.",
+          "Vratite se u Apartman Asistent i dodajte tu poveznicu u Expedia feed.",
         ].map((step, i) => <Step key={i} number={i + 1} text={step} />)}
       </div>
       <InfoBox type="warn">
-        Wenn der Menüpunkt „Kalender verbinden" nicht erscheint, erwartet Expedia für diese Unterkunft ein Channel-Manager-System — iCal-Export ist dann nicht verfügbar.
+        Ako se stavka „Povezivanje kalendara" ne pojavi, Expedia za taj smještaj očekuje sustav upravitelja kanala — iCal izvoz tada nije dostupan.
       </InfoBox>
-      <InfoBox>Die Oberfläche von Expedia Partner Central kann sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.</InfoBox>
+      <InfoBox>Sučelje Expedia Partner Centrala povremeno se mijenja. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.</InfoBox>
     </div>
   );
 }
 /* ─── Plain text export ─────────────────────────────────────────── */
 const TAB_TEXT: Record<string, string> = {
-  start: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
-Erste Schritte
-==============
+  start: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
+Prvi koraci
+===========
 
-Was ist iCal?
-iCal ist eine internetbasierte Kalenderverbindung. Damit können verschiedene Buchungsplattformen (z. B. Booking.com oder Airbnb) ihren Buchungskalender automatisch mit Apartment Assistant teilen — Sie müssen die Gästedaten also nicht mehr von Hand eintragen.
+Što je iCal?
+iCal je internetska veza kalendara. Pomoću nje različite platforme za rezervacije (npr. Booking.com ili Airbnb) mogu automatski dijeliti svoj kalendar rezervacija s Apartman Asistentom — podatke o gostima više ne morate ručno unositi.
 
-Bevor Sie beginnen:
-- Ein Apartment-Assistant-Konto
-- Mindestens eine hinzugefügte Ferienwohnung
-- Der von der Buchungsplattform kopierte iCal-Link
+Prije nego što počnete:
+- Račun na Apartman Asistentu
+- Barem jedan dodani apartman
+- iCal poveznica kopirana s platforme za rezervacije
 
-iCal-Link zur App hinzufügen:
-1. Tippen Sie auf + Neue Ferienwohnung hinzufügen.
-2. Geben Sie den Namen der Ferienwohnung ein und wählen Sie eine Farbe. Tippen Sie auf Hinzufügen.
-3. Die Ferienwohnung erscheint in der Liste. Tippen Sie auf den Pfeil nach unten auf der rechten Seite.
-4. Tippen Sie auf + iCal-Feed hinzufügen.
-5. Wählen Sie die Buchungsplattform aus (Airbnb, Booking.com, Google Kalender usw.).
-6. Fügen Sie den kopierten Link (https://...) in das Feld iCal-URL ein. Tippen Sie auf Speichern.
-7. Wenn Sie mehrere Buchungsplattformen nutzen, wiederholen Sie die Schritte 4–6 für jede Plattform.
+Dodavanje iCal poveznice u aplikaciju:
+1. Dodirnite + Dodaj novi apartman.
+2. Unesite naziv apartmana i odaberite boju. Dodirnite Dodaj.
+3. Apartman se pojavljuje na popisu. Dodirnite strelicu prema dolje na desnoj strani.
+4. Dodirnite + Dodaj iCal feed.
+5. Odaberite platformu za rezervacije (Airbnb, Booking.com, Google kalendar itd.).
+6. Umetnite kopiranu poveznicu (https://...) u polje iCal URL. Dodirnite Spremi.
+7. Ako koristite više platformi za rezervacije, ponovite korake 4–6 za svaku platformu.
 
-Gut zu wissen: Buchungen erscheinen nicht immer sofort — wie schnell eine neue Buchung sichtbar wird, hängt von der Buchungsplattform ab. Das ist völlig normal.`,
+Dobro je znati: Rezervacije se ne pojavljuju uvijek odmah — koliko brzo nova rezervacija postaje vidljiva ovisi o platformi za rezervacije. To je posve normalno.`,
 
-  airbnb: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
+  airbnb: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
 Airbnb
 ======
 
-Erforderlich: Airbnb-Gastgeberkonto + Zugriff auf die Unterkunft
+Potrebno: Airbnb domaćinski račun + pristup smještaju
 
-1. Öffnen Sie airbnb.de und melden Sie sich bei Ihrem Konto an.
-2. Klicken Sie oben rechts auf Gastgeberaufgaben. Falls nicht sichtbar, wählen Sie Zur Gastgeberansicht wechseln.
-3. Klicken Sie in der oberen Menüleiste auf Inserate.
-4. Klicken Sie auf die Unterkunft, die Sie verbinden möchten.
-5. Klicken Sie im Inserat auf den Reiter Preise und Verfügbarkeit.
-6. Scrollen Sie nach unten, bis Sie den Bereich Kalendersynchronisierung finden.
-7. Klicken Sie auf Kalender exportieren.
-8. Kopieren Sie den angezeigten Link — das ist die iCal-URL.
-9. Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Airbnb-Feed hinzu.
+1. Otvorite airbnb.hr i prijavite se na svoj račun.
+2. Kliknite gore desno na Domaćinski zadaci. Ako nije vidljivo, odaberite Prijeđi na prikaz domaćina.
+3. Kliknite u gornjem izborniku na Oglasi.
+4. Kliknite na smještaj koji želite povezati.
+5. U oglasu kliknite na karticu Cijene i dostupnost.
+6. Pomaknite se prema dolje dok ne pronađete odjeljak Sinkronizacija kalendara.
+7. Kliknite na Izvoz kalendara.
+8. Kopirajte prikazanu poveznicu — to je iCal URL.
+9. Vratite se u Apartman Asistent i dodajte tu poveznicu u Airbnb feed.
 
-Gut zu wissen: Die Airbnb-Oberfläche kann sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.`,
+Dobro je znati: Sučelje Airbnb-a povremeno se mijenja. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.`,
 
-  booking: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
+  booking: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
 Booking.com
 ===========
 
-Erforderlich: Booking.com-Partnerkonto + Extranet-Zugang
+Potrebno: Booking.com partnerski račun + pristup Extranetu
 
-1. Öffnen Sie booking.com und melden Sie sich mit Ihrem Partnerkonto an.
-2. Nach der Anmeldung öffnen Sie das Booking.com Extranet.
-3. Suchen Sie im Hauptmenü des Extranets den Menüpunkt Zimmer & Verfügbarkeit oder Kalender.
-4. Öffnen Sie den Bereich Kalendersynchronisierung (iCal sync / Calendar sync).
-5. Suchen Sie die Option iCal-Export / Kalender exportieren.
-6. Kopieren Sie den angezeigten Link — das ist die iCal-URL.
-7. Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Booking.com-Feed hinzu.
+1. Otvorite booking.com i prijavite se svojim partnerskim računom.
+2. Nakon prijave otvorite Booking.com Extranet.
+3. U glavnom izborniku Extraneta potražite stavku Sobe i dostupnost ili Kalendar.
+4. Otvorite odjeljak Sinkronizacija kalendara (iCal sync / Calendar sync).
+5. Potražite opciju iCal izvoz / Izvoz kalendara.
+6. Kopirajte prikazanu poveznicu — to je iCal URL.
+7. Vratite se u Apartman Asistent i dodajte tu poveznicu u Booking.com feed.
 
-Gut zu wissen: Die Oberfläche und die Menüpunkte des Booking.com Extranets können sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.`,
+Dobro je znati: Sučelje i stavke izbornika Booking.com Extraneta povremeno se mijenjaju. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.`,
 
-  google: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
-Google Kalender
+  google: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
+Google kalendar
 ===============
 
-Erforderlich: Google-Konto + Buchungskalender in Google Kalender • Nur am Computer
+Potrebno: Google račun + kalendar rezervacija u Google kalendaru • Samo na računalu
 
-1. Öffnen Sie calendar.google.com und melden Sie sich an.
-2. Suchen Sie links unter Meine Kalender den Kalender für Ihre Unterkunft.
-3. Bewegen Sie den Mauszeiger über den Kalendernamen und klicken Sie auf die drei senkrechten Punkte.
-4. Wählen Sie Einstellungen und Freigabe.
-5. Suchen Sie im linken Menü den Punkt Kalender integrieren.
-6. Suchen Sie den Bereich Geheime Adresse im iCal-Format.
-7. Klicken Sie auf das Kopieren-Symbol oder kopieren Sie den gesamten Link.
-8. Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Google-Kalender-Feed hinzu.
+1. Otvorite calendar.google.com i prijavite se.
+2. Lijevo pod Moji kalendari potražite kalendar za svoj smještaj.
+3. Pomaknite pokazivač miša preko naziva kalendara i kliknite na tri okomite točke.
+4. Odaberite Postavke i dijeljenje.
+5. U lijevom izborniku potražite stavku Integriranje kalendara.
+6. Potražite odjeljak Tajna adresa u iCal formatu.
+7. Kliknite na ikonu kopiranja ili kopirajte cijelu poveznicu.
+8. Vratite se u Apartman Asistent i dodajte tu poveznicu u feed Google kalendara.
 
-Gut zu wissen: Google kann den Aufbau von Kalender gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.`,
+Dobro je znati: Google povremeno mijenja izgled kalendara. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.`,
 
-  vrbo: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
+  vrbo: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
 VRBO
 ====
 
-Erforderlich: VRBO-Vermieterkonto + Zugriff auf die Unterkunft
+Potrebno: VRBO iznajmljivački račun + pristup smještaju
 
-1. Öffnen Sie vrbo.com und melden Sie sich in Ihrem Vermieterkonto an (Owner Dashboard).
-2. Falls Sie mehrere Objekte verwalten, wählen Sie das passende aus.
-3. Klicken Sie im linken Menü auf Kalender (Calendar).
-4. Suchen Sie die Option Import & Export (Import & Export).
-5. Klicken Sie auf Kalender exportieren (Export calendar).
-6. Klicken Sie auf URL kopieren (Copy URL).
-7. Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim VRBO-Feed hinzu.
+1. Otvorite vrbo.com i prijavite se u svoj iznajmljivački račun (Owner Dashboard).
+2. Ako upravljate s više objekata, odaberite odgovarajući.
+3. U lijevom izborniku kliknite na Kalendar (Calendar).
+4. Potražite opciju Uvoz i izvoz (Import & Export).
+5. Kliknite na Izvoz kalendara (Export calendar).
+6. Kliknite na Kopiraj URL (Copy URL).
+7. Vratite se u Apartman Asistent i dodajte tu poveznicu u VRBO feed.
 
-Achtung: Auf der VRBO-Oberfläche kann ein Kästchen "Include tentative reservations" erscheinen. Wenn Sie den iCal-Link für Apartment Assistant verwenden, lassen Sie es deaktiviert.`,
+Pažnja: Na VRBO sučelju može se pojaviti kućica "Include tentative reservations". Ako iCal poveznicu koristite za Apartman Asistent, ostavite je isključenom.`,
 
-  tripadvisor: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
+  tripadvisor: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
 TripAdvisor
 ===========
 
-Erforderlich: TripAdvisor-Rentals-Eigentümerkonto + Zugriff auf die Unterkunft
+Potrebno: TripAdvisor Rentals vlasnički račun + pristup smještaju
 
-1. Öffnen Sie tripadvisor.com/rentals und melden Sie sich in Ihrem Eigentümerkonto an.
-2. Falls Sie mehrere Unterkünfte verwalten, wählen Sie die passende aus.
-3. Klicken Sie in der oberen Menüleiste auf den Reiter Kalender (Calendar).
-4. Suchen Sie den Button Kalender exportieren (Export calendar) (meist rechts oder oben).
-5. Klicken Sie auf Link kopieren (Copy Link / Copy to clipboard).
-6. Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim TripAdvisor-Feed hinzu.
+1. Otvorite tripadvisor.com/rentals i prijavite se u svoj vlasnički račun.
+2. Ako upravljate s više smještaja, odaberite odgovarajući.
+3. U gornjem izborniku kliknite na karticu Kalendar (Calendar).
+4. Potražite gumb Izvoz kalendara (Export calendar) (obično desno ili gore).
+5. Kliknite na Kopiraj poveznicu (Copy Link / Copy to clipboard).
+6. Vratite se u Apartman Asistent i dodajte tu poveznicu u TripAdvisor feed.
 
-Gut zu wissen: Die Oberfläche von TripAdvisor Rentals kann sich gelegentlich ändern. Wenn ein Menüpunkt an anderer Stelle erscheint, suchen Sie nach derselben Funktion in der aktuellen Oberfläche.`,
+Dobro je znati: Sučelje TripAdvisor Rentals povremeno se mijenja. Ako se stavka izbornika pojavi na drugom mjestu, potražite istu funkciju u aktualnom sučelju.`,
 
-  expedia: `APARTMENT ASSISTANT – iCal-Einrichtungsanleitung
+  expedia: `APARTMAN ASISTENT – Upute za postavljanje iCal-a
 Expedia
 =======
 
-Achtung: Im Expedia Partner Central ist der iCal-Export nicht für jede Unterkunft verfügbar.
+Pažnja: U Expedia Partner Centralu iCal izvoz nije dostupan za svaki smještaj.
 
-Erforderlich: Expedia-Partner-Central-Konto + Zugriff auf die Unterkunft
+Potrebno: Expedia Partner Central račun + pristup smještaju
 
-1. Öffnen Sie expediapartnercentral.com und melden Sie sich an.
-2. Suchen Sie im Hauptmenü den Punkt Zimmer und Preise (Rooms and Rates).
-3. Wählen Sie Zimmertypen und Preispläne (Room types and Rate plans).
-4. Suchen Sie die Option Kalender verbinden (Connect calendars).
-5. Falls Sie mehrere Zimmer verwalten, wählen Sie die passende Unterkunft aus.
-6. Scrollen Sie zum Expedia-Group-Kalenderexport und klicken Sie auf Link erstellen (Create link).
-7. Kopieren Sie den erstellten Link.
-8. Kehren Sie zu Apartment Assistant zurück und fügen Sie diesen Link beim Expedia-Feed hinzu.
+1. Otvorite expediapartnercentral.com i prijavite se.
+2. U glavnom izborniku potražite stavku Sobe i cijene (Rooms and Rates).
+3. Odaberite Vrste soba i cjenovni planovi (Room types and Rate plans).
+4. Potražite opciju Povezivanje kalendara (Connect calendars).
+5. Ako upravljate s više soba, odaberite odgovarajući smještaj.
+6. Pomaknite se do Izvoz kalendara Expedia Group i kliknite na Izradi poveznicu (Create link).
+7. Kopirajte izrađenu poveznicu.
+8. Vratite se u Apartman Asistent i dodajte tu poveznicu u Expedia feed.
 
-Achtung: Wenn "Kalender verbinden" nicht erscheint, erwartet Expedia für diese Unterkunft ein Channel-Manager-System — iCal-Export ist dann nicht verfügbar.`,
+Pažnja: Ako se "Povezivanje kalendara" ne pojavi, Expedia za taj smještaj očekuje sustav upravitelja kanala — iCal izvoz tada nije dostupan.`,
 };
 
 function downloadTxt(tabId: string, label: string) {
@@ -474,7 +474,7 @@ function downloadTxt(tabId: string, label: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `ical-anleitung-${label.toLowerCase().replace(/[^a-z0-9]/g, "-")}.txt`;
+  a.download = `ical-upute-${label.toLowerCase().replace(/[^a-z0-9]/g, "-")}.txt`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -519,8 +519,8 @@ const [activeTab, setActiveTab] = useState("start");
         <div className="shrink-0 px-5 pt-4 pb-4" style={{ borderBottom: `1px solid ${TEAL.border}` }}>
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-[16px] font-semibold" style={{ color: T.primary }}>📋 iCal-Einrichtungsanleitung</h2>
-              <p className="text-[12px] mt-0.5" style={{ color: T.secondary }}>Wählen Sie die Plattform aus, die Sie verbinden möchten</p>
+              <h2 className="text-[16px] font-semibold" style={{ color: T.primary }}>📋 Upute za postavljanje iCal-a</h2>
+              <p className="text-[12px] mt-0.5" style={{ color: T.secondary }}>Odaberite platformu koju želite povezati</p>
             </div>
             <button
               type="button"
@@ -528,14 +528,14 @@ const [activeTab, setActiveTab] = useState("start");
               className="pressable flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-[12px] font-semibold transition-soft"
               style={{ background: "rgb(86 176 187 / 0.12)", color: "#7dd4dd", outline: "1px solid rgb(86 176 187 / 0.30)" }}
             >
-              ⬇ Als .txt speichern
+              ⬇ Spremi kao .txt
             </button>
             <button
               type="button"
               onClick={onClose}
               className="pressable flex h-8 w-8 items-center justify-center rounded-full transition-soft"
               style={{ background: CORAL.bg, boxShadow: CORAL.glow }}
-              aria-label="Schließen"
+              aria-label="Zatvori"
             >
               <X className="h-4 w-4" style={{ color: CORAL.text }} />
             </button>
