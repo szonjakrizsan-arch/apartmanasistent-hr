@@ -408,8 +408,8 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
         <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed px-4 py-10 text-center"
           style={{ borderColor: "rgb(86 176 187 / 0.18)" }}>
           <Sparkles className="h-8 w-8 text-text-muted" />
-          <p className="text-[13px] text-text-secondary">Keine aktive Aufgabe.</p>
-          <p className="text-[11px] text-text-muted">Aufgaben erscheinen automatisch aus den Buchungen.</p>
+          <p className="text-[13px] text-text-secondary">Nema aktivnog zadatka.</p>
+          <p className="text-[11px] text-text-muted">Zadaci se automatski pojavljuju iz rezervacija.</p>
         </div>
       ) : (
         <div className="flex flex-col gap-5">
@@ -417,7 +417,7 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
           {/* ANKÜNFTE — apartment blocks */}
           {arrivingGroups.length > 0 && (
             <section>
-              <SectionHeader title="Ankünfte" color="#56b0bb"
+              <SectionHeader title="Dolasci" color="#56b0bb"
                 count={arrivingGroups.length}
                 doneCount={arrivingTasks.filter((t) => t.done).length}
                 totalCount={arrivingTasks.length}
@@ -435,7 +435,7 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
           {/* ZAHLUNGEN — flat list */}
           {paymentTasks.length > 0 && (
             <section>
-              <SectionHeader title="Zahlungen" color="#ddb055"
+              <SectionHeader title="Plaćanja" color="#ddb055"
                 count={paymentTasks.length}
                 doneCount={paymentTasks.filter((t) => t.done).length}
                 totalCount={paymentTasks.length}
@@ -451,7 +451,7 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
           {/* REINIGUNG — flat list */}
           {cleaningTasks.length > 0 && (
             <section>
-              <SectionHeader title="Abreisen · Reinigung" color="#dc8460"
+              <SectionHeader title="Odlasci · Čišćenje" color="#dc8460"
                 count={cleaningTasks.length}
                 doneCount={cleaningTasks.filter((t) => t.done).length}
                 totalCount={cleaningTasks.length}
@@ -467,7 +467,7 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
           {/* EIGENE — flat list */}
           {activeTodayCustom.length > 0 && (
             <section>
-              <SectionHeader title="Eigene Aufgaben" color="#9b8ecf"
+              <SectionHeader title="Vlastiti zadaci" color="#9b8ecf"
                 count={activeTodayCustom.length}
                 doneCount={activeTodayCustom.filter((t) => t.done).length}
                 totalCount={activeTodayCustom.length}
