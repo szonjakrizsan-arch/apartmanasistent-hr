@@ -312,13 +312,13 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
 
   async function handleCopyCleaningLink(apt: ApartmentRow) {
     if (!apt.cleaning_token) return;
-    const url = `https://app.apartmentassistant.de/api/cleaning/${apt.cleaning_token}`;
+    const url = `https://app.apartmanasistent.hr/api/cleaning/${apt.cleaning_token}`;
     try {
       await navigator.clipboard.writeText(url);
       setCopiedApt(apt.id);
       setTimeout(() => setCopiedApt(null), 2000);
     } catch {
-      // Zwischenablage evtl. nicht verfügbar (z. B. fehlende Berechtigung) — dann still ignorieren.
+      // Međuspremnik možda nije dostupan (npr. nedostaje dopuštenje) — tada tiho ignoriramo.
     }
   }
 
@@ -344,10 +344,10 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
         style={{ background: "linear-gradient(148deg, #1e2e2a 0%, #1a2c2e 100%)", borderColor: "rgb(86 176 187 / 0.18)" }}>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-text-secondary">Heutige Aufgaben</p>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-text-secondary">Današnji zadaci</p>
             <p className="mt-0.5 text-[15px] font-semibold" style={{ color: "#F4F0E8" }}>
-              {doneCount} / {totalCount} erledigt
-              {urgentCount > 0 && <span className="ml-2 text-[12px] font-medium text-[#dc8460]">· {urgentCount} dringend</span>}
+              {doneCount} / {totalCount} riješeno
+              {urgentCount > 0 && <span className="ml-2 text-[12px] font-medium text-[#dc8460]">· {urgentCount} hitno</span>}
             </p>
           </div>
           {totalCount > 0 && (
@@ -377,14 +377,14 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
             className="pressable flex w-full items-center justify-between text-left">
             <span className="flex items-center gap-2">
               <Link2 className="h-4 w-4" style={{ color: "#dc8460" }} />
-              <span className="text-[13px] font-semibold" style={{ color: "#dc8460" }}>Reinigungslinks</span>
+              <span className="text-[13px] font-semibold" style={{ color: "#dc8460" }}>Poveznice za čišćenje</span>
             </span>
             {linksCollapsed ? <ChevronDown className="h-4 w-4 text-text-muted" /> : <ChevronUp className="h-4 w-4 text-text-muted" />}
           </button>
           {!linksCollapsed && (
             <div className="mt-3 flex flex-col gap-2">
               <p className="text-[11px] text-text-muted mb-1">
-                Ein eigener, geheimer Link je Ferienwohnung — teilen Sie ihn mit Ihrer Reinigungskraft (z. B. per WhatsApp). Kein Login nötig.
+                Vlastita, tajna poveznica za svaki apartman — podijelite je s osobom koja čisti (npr. putem WhatsAppa). Prijava nije potrebna.
               </p>
               {apartments.map((apt) => (
                 <button key={apt.id} type="button" onClick={() => handleCopyCleaningLink(apt)}
@@ -395,7 +395,7 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
                     : <Copy className="h-3.5 w-3.5 shrink-0 opacity-70" />}
                   <span className="text-[12px] font-medium flex-1 truncate">{apt.name}</span>
                   <span className="text-[11px] opacity-80 shrink-0">
-                    {copiedApt === apt.id ? "Kopiert!" : "Link kopieren"}
+                    {copiedApt === apt.id ? "Kopirano!" : "Kopiraj poveznicu"}
                   </span>
                 </button>
               ))}
