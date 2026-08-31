@@ -75,7 +75,7 @@ export function FutureBookingRow({ booking, onOpen }: FutureBookingRowProps) {
       boxShadow: "0 0 0 1.5px rgb(217 171 78 / 0.8)",
     }}
   >
-    ⚠ Prüfen
+    ⚠ Provjeri
   </span>
 )}
       </div>
