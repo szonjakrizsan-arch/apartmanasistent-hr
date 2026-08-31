@@ -12,16 +12,16 @@ export function ResetPasswordScreen({ onDone }: { onDone: () => void }) {
 
   async function handleSubmit() {
     setError("");
-    if (password.length < 6) { setError("Das Passwort muss mindestens 6 Zeichen lang sein."); return; }
-    if (password !== password2) { setError("Die beiden Passwörter stimmen nicht überein."); return; }
+    if (password.length < 6) { setError("Lozinka mora imati barem 6 znakova."); return; }
+    if (password !== password2) { setError("Unesene lozinke se ne podudaraju."); return; }
     setLoading(true);
     const { error } = await supabase.auth.updateUser({ password });
     setLoading(false);
     if (error) {
   if (error.message.includes("different from the old password")) {
-    setError("Das neue Passwort darf nicht mit dem alten identisch sein.");
+    setError("Nova lozinka ne smije biti identična staroj.");
   } else {
-    setError("Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.");
+    setError("Došlo je do pogreške. Pokušajte ponovno.");
   }
   return;
 }
@@ -42,8 +42,8 @@ setTimeout(onDone, 2000);
             <Home className="h-6 w-6" style={{ color: "#63bea2" }} />
           </span>
           <div className="text-center">
-            <h1 className="text-[18px] font-bold text-text-primary">Neues Passwort festlegen</h1>
-            <p className="text-[12px] text-text-muted mt-0.5">Geben Sie Ihr neues Passwort ein</p>
+            <h1 className="text-[18px] font-bold text-text-primary">Postavljanje nove lozinke</h1>
+            <p className="text-[12px] text-text-muted mt-0.5">Unesite svoju novu lozinku</p>
           </div>
         </div>
 
@@ -51,24 +51,24 @@ setTimeout(onDone, 2000);
           {success ? (
             <p className="text-[13px] rounded-lg px-3 py-2 text-center"
               style={{ background: "rgb(90 191 138 / 0.12)", color: "#5abf8a" }}>
-              Passwort geändert! Sie werden weitergeleitet…
+              Lozinka je promijenjena! Preusmjeravamo vas…
             </p>
           ) : (
             <>
               <div className="relative">
                 <input type={showPassword ? "text" : "password"} value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Neues Passwort" className={inputCls} style={inputStyle} />
+                  placeholder="Nova lozinka" className={inputCls} style={inputStyle} />
                 <button type="button" onClick={() => setShowPassword((v) => !v)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-1"
                   style={{ color: "rgb(143 168 158 / 0.8)" }}
-                  aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}>
+                  aria-label={showPassword ? "Sakrij lozinku" : "Prikaži lozinku"}>
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
               <input type={showPassword ? "text" : "password"} value={password2}
                 onChange={(e) => setPassword2(e.target.value)}
-                placeholder="Neues Passwort wiederholen" className={inputCls} style={inputStyle} />
+                placeholder="Ponovite novu lozinku" className={inputCls} style={inputStyle} />
 
               {error && (
                 <p className="text-[12px] rounded-lg px-3 py-2"
@@ -80,7 +80,7 @@ setTimeout(onDone, 2000);
               <button type="button" onClick={handleSubmit} disabled={loading}
                 className="pressable w-full rounded-xl py-3 text-[13px] font-semibold transition-soft"
                 style={{ background: "rgb(86 176 187 / 0.20)", color: "#56b0bb", outline: "1px solid rgb(86 176 187 / 0.30)" }}>
-                {loading ? "..." : "Passwort speichern"}
+                {loading ? "..." : "Spremi lozinku"}
               </button>
             </>
           )}
