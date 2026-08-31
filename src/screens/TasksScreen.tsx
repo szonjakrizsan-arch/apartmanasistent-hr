@@ -370,7 +370,7 @@ export function TasksScreen({ appState, ical, apartments }: TasksScreenProps) {
         )}
       </div>
 
-      {/* Reinigungslinks — always visible, independent of today's tasks */}
+      {/* Poveznice za čišćenje — uvijek vidljive, neovisno o današnjim zadacima */}
       {apartments.length > 0 && (
         <div className="rounded-2xl border px-4 py-3" style={{ borderColor: "rgb(220 132 96 / 0.25)", background: "rgb(220 132 96 / 0.05)" }}>
           <button type="button" onClick={() => setLinksCollapsed((v) => !v)}
