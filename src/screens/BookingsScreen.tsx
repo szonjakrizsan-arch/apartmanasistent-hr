@@ -21,9 +21,9 @@ const FUTURE_PREVIEW = 3;
 
 function getGreeting(): string {
   const h = new Date().getHours();
-  if (h < 11) return "Guten Morgen";
-  if (h < 18) return "Guten Tag";
-  return "Guten Abend";
+  if (h < 11) return "Dobro jutro";
+  if (h < 18) return "Dobar dan";
+  return "Dobra večer";
 }
 
 type FilterConfig = {
@@ -33,10 +33,10 @@ type FilterConfig = {
 };
 
 const FILTERS: FilterConfig[] = [
-  { id: "all",       label: "Alle",       inactiveBg: "bg-surface-card", inactiveText: "text-text-secondary", inactiveRing: "ring-border-subtle",    inactiveBadgeBg: "bg-border-subtle/70",    inactiveBadgeText: "text-text-secondary", activeBg: "bg-surface-raised", activeText: "text-text-primary", activeRing: "ring-border-subtle",   activeBadgeBg: "bg-border-subtle",     activeBadgeText: "text-text-primary" },
-  { id: "arriving",  label: "Ankommend",  inactiveBg: "bg-[#dc84601e]",  inactiveText: "text-[#dc8460]",      inactiveRing: "ring-[#dc846035]",      inactiveBadgeBg: "bg-[#dc846032]",         inactiveBadgeText: "text-[#dc8460]",      activeBg: "bg-[#dc846030]",    activeText: "text-[#dc8460]",    activeRing: "ring-[#dc846055]", activeBadgeBg: "bg-[#dc846050]",       activeBadgeText: "text-[#dc8460]" },
-  { id: "staying",   label: "Vor Ort",    inactiveBg: "bg-[#60bc9e1e]",  inactiveText: "text-[#60bc9e]",      inactiveRing: "ring-[#60bc9e35]",      inactiveBadgeBg: "bg-[#60bc9e32]",         inactiveBadgeText: "text-[#60bc9e]",      activeBg: "bg-[#60bc9e30]",    activeText: "text-[#60bc9e]",    activeRing: "ring-[#60bc9e55]", activeBadgeBg: "bg-[#60bc9e50]",       activeBadgeText: "text-[#60bc9e]" },
-  { id: "departing", label: "Abreisend",  inactiveBg: "bg-[#56b0bb1e]",  inactiveText: "text-[#56b0bb]",      inactiveRing: "ring-[#56b0bb35]",      inactiveBadgeBg: "bg-[#56b0bb32]",         inactiveBadgeText: "text-[#56b0bb]",      activeBg: "bg-[#56b0bb30]",    activeText: "text-[#56b0bb]",    activeRing: "ring-[#56b0bb55]", activeBadgeBg: "bg-[#56b0bb50]",       activeBadgeText: "text-[#56b0bb]" },
+  { id: "all",       label: "Sve",        inactiveBg: "bg-surface-card", inactiveText: "text-text-secondary", inactiveRing: "ring-border-subtle",    inactiveBadgeBg: "bg-border-subtle/70",    inactiveBadgeText: "text-text-secondary", activeBg: "bg-surface-raised", activeText: "text-text-primary", activeRing: "ring-border-subtle",   activeBadgeBg: "bg-border-subtle",     activeBadgeText: "text-text-primary" },
+  { id: "arriving",  label: "Dolazi",     inactiveBg: "bg-[#dc84601e]",  inactiveText: "text-[#dc8460]",      inactiveRing: "ring-[#dc846035]",      inactiveBadgeBg: "bg-[#dc846032]",         inactiveBadgeText: "text-[#dc8460]",      activeBg: "bg-[#dc846030]",    activeText: "text-[#dc8460]",    activeRing: "ring-[#dc846055]", activeBadgeBg: "bg-[#dc846050]",       activeBadgeText: "text-[#dc8460]" },
+  { id: "staying",   label: "Na mjestu",  inactiveBg: "bg-[#60bc9e1e]",  inactiveText: "text-[#60bc9e]",      inactiveRing: "ring-[#60bc9e35]",      inactiveBadgeBg: "bg-[#60bc9e32]",         inactiveBadgeText: "text-[#60bc9e]",      activeBg: "bg-[#60bc9e30]",    activeText: "text-[#60bc9e]",    activeRing: "ring-[#60bc9e55]", activeBadgeBg: "bg-[#60bc9e50]",       activeBadgeText: "text-[#60bc9e]" },
+  { id: "departing", label: "Odlazi",     inactiveBg: "bg-[#56b0bb1e]",  inactiveText: "text-[#56b0bb]",      inactiveRing: "ring-[#56b0bb35]",      inactiveBadgeBg: "bg-[#56b0bb32]",         inactiveBadgeText: "text-[#56b0bb]",      activeBg: "bg-[#56b0bb30]",    activeText: "text-[#56b0bb]",    activeRing: "ring-[#56b0bb55]", activeBadgeBg: "bg-[#56b0bb50]",       activeBadgeText: "text-[#56b0bb]" },
 ];
 
 function filterCount(bookings: Booking[], id: FilterId): number {
@@ -61,9 +61,9 @@ function FilterChip({ config, active, count, onClick }: { config: FilterConfig; 
 
 function GroupLabel({ status, count }: { status: BookingStatus; count: number }) {
   const cfg: Record<BookingStatus, { label: string; color: string; Icon: typeof KeyRound; badgeBg: string }> = {
-    arriving:  { label: "Ankünfte", color: "#dc8460", Icon: KeyRound, badgeBg: "rgb(220 132 96 / 0.16)" },
-    staying:   { label: "Vor Ort", color: "#60bc9e", Icon: Home,     badgeBg: "rgb(96 188 158 / 0.16)" },
-    departing: { label: "Abreisen",  color: "#56b0bb", Icon: DoorOpen, badgeBg: "rgb(86 176 187 / 0.16)" },
+    arriving:  { label: "Dolasci", color: "#dc8460", Icon: KeyRound, badgeBg: "rgb(220 132 96 / 0.16)" },
+    staying:   { label: "Na mjestu", color: "#60bc9e", Icon: Home,     badgeBg: "rgb(96 188 158 / 0.16)" },
+    departing: { label: "Odlasci",  color: "#56b0bb", Icon: DoorOpen, badgeBg: "rgb(86 176 187 / 0.16)" },
   };
   const { label, color, Icon, badgeBg } = cfg[status];
   return (
@@ -116,27 +116,27 @@ export function BookingsScreen({ appState, ical, openBooking, setOpenBooking }: 
       <div className="flex flex-col gap-0 pb-2">
 
         {/* ── Greeting hero ── */}
-        <section className="gradient-hero glow-card relative overflow-hidden rounded-2xl border border-[#60bc9e18] px-5 py-4" aria-label="Tageszusammenfassung">
+        <section className="gradient-hero glow-card relative overflow-hidden rounded-2xl border border-[#60bc9e18] px-5 py-4" aria-label="Sažetak dana">
           <div aria-hidden className="pointer-events-none absolute -right-5 -top-5 h-24 w-24 opacity-[0.065]"
             style={{ background: "radial-gradient(circle, #60bc9e 0%, transparent 68%)" }} />
           <div className="relative">
             <p className="text-[11px] font-semibold uppercase tracking-widest text-[#60bc9e]/70">
-              Heutige Übersicht
+              Današnji pregled
             </p>
             <p className="mt-1 text-[15px] font-semibold text-text-primary">
               {icalStatus === "loading"
-                ? "Buchungen werden geladen…"
-                : `Heute ${bookings.length} aktive ${bookings.length === 1 ? "Buchung" : "Buchungen"}.`}
+                ? "Učitavanje rezervacija…"
+                : `Danas ${bookings.length} ${bookings.length === 1 ? "aktivna rezervacija" : "aktivnih rezervacija"}.`}
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
               <span className="flex items-center gap-1.5">
                 <KeyRound className="h-3.5 w-3.5 shrink-0" style={{ color: "#dc8460" }} aria-hidden />
-                <span className="text-[13px] font-semibold" style={{ color: "#dc8460" }}>{countArriving} {countArriving === 1 ? "Anreise" : "Anreisen"}</span>
+                <span className="text-[13px] font-semibold" style={{ color: "#dc8460" }}>{countArriving} {countArriving === 1 ? "dolazak" : "dolaska"}</span>
               </span>
               <span className="h-3.5 w-px bg-border-faint" aria-hidden />
               <span className="flex items-center gap-1.5">
                 <Home className="h-3.5 w-3.5 shrink-0" style={{ color: "#60bc9e" }} aria-hidden />
-                <span className="text-[13px] font-semibold" style={{ color: "#60bc9e" }}>{countStaying} vor Ort</span>
+                <span className="text-[13px] font-semibold" style={{ color: "#60bc9e" }}>{countStaying} na mjestu</span>
               </span>
               <span className="h-3.5 w-px bg-border-faint" aria-hidden />
               <span className="flex items-center gap-1.5">
