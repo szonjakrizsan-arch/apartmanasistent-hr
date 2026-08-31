@@ -141,15 +141,15 @@ export function BookingsScreen({ appState, ical, openBooking, setOpenBooking }: 
               <span className="h-3.5 w-px bg-border-faint" aria-hidden />
               <span className="flex items-center gap-1.5">
                 <DoorOpen className="h-3.5 w-3.5 shrink-0" style={{ color: "#56b0bb" }} aria-hidden />
-                <span className="text-[13px] font-semibold" style={{ color: "#56b0bb" }}>{countDeparting} {countDeparting === 1 ? "Abreise" : "Abreisen"}</span>
+                <span className="text-[13px] font-semibold" style={{ color: "#56b0bb" }}>{countDeparting} {countDeparting === 1 ? "odlazak" : "odlaska"}</span>
               </span>
               {/* Refresh button */}
               <button type="button" onClick={refetch}
                 className="pressable ml-auto flex items-center gap-1 rounded-lg px-2 py-0.5 text-[11px] transition-soft"
                 style={{ color: "rgb(86 176 187 / 0.70)", background: "rgb(86 176 187 / 0.08)" }}
-                aria-label="Aktualisieren">
+                aria-label="Osvježi">
                 <RefreshCw className={`h-3 w-3 ${icalStatus === "loading" ? "animate-spin" : ""}`} aria-hidden />
-                {lastFetched ? lastFetched.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) : ""}
+                {lastFetched ? lastFetched.toLocaleTimeString("hr-HR", { hour: "2-digit", minute: "2-digit" }) : ""}
               </button>
             </div>
           </div>
@@ -161,8 +161,8 @@ export function BookingsScreen({ appState, ical, openBooking, setOpenBooking }: 
             style={{ background: "rgb(220 132 96 / 0.08)", borderColor: "rgb(220 132 96 / 0.25)" }}>
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#e08060]" aria-hidden />
             <div>
-              <p className="text-[12px] font-semibold text-[#e08060]">Einige Kalender konnten nicht geladen werden</p>
-              <p className="text-[11px] text-text-secondary">{errors.length} {errors.length === 1 ? "Quelle" : "Quellen"} fehlerhaft · Die Daten könnten unvollständig sein</p>
+              <p className="text-[12px] font-semibold text-[#e08060]">Neki kalendari nisu se mogli učitati</p>
+              <p className="text-[11px] text-text-secondary">{errors.length} {errors.length === 1 ? "izvor" : "izvora"} s greškom · Podaci mogu biti nepotpuni</p>
             </div>
           </div>
         )}
@@ -208,14 +208,14 @@ export function BookingsScreen({ appState, ical, openBooking, setOpenBooking }: 
               })}
               {bookings.length === 0 && icalStatus === "success" && (
                 <p className="py-10 text-center text-sm text-text-muted">
-                  Heute keine aktive Buchung.
+                  Danas nema aktivne rezervacije.
                 </p>
               )}
             </div>
           ) : (
             <ul className="flex flex-col gap-3">
               {filtered.length === 0
-                ? <li className="py-10 text-center text-sm text-text-muted">Keine Treffer</li>
+                ? <li className="py-10 text-center text-sm text-text-muted">Nema rezultata</li>
                 : filtered.map((booking) => (
                     <li key={booking.id}>
                       <BookingCard booking={booking}
