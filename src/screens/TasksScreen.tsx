@@ -13,11 +13,11 @@ interface TasksScreenProps {
 }
 
 const TASK_CONFIG = {
-  cleaning: { color: "#56b0bb", urgentColor: "#dc8460", bg: "rgb(86 176 187 / 0.12)", Icon: Sparkles,      label: "Reinigung" },
-  payment:  { color: "#ddb055", urgentColor: "#e08060", bg: "rgb(217 171 78 / 0.12)", Icon: Banknote,      label: "Zahlung prüfen" },
-  key:      { color: "#56b0bb", urgentColor: "#56b0bb", bg: "rgb(86 176 187 / 0.12)", Icon: Key,           label: "Schlüssel vorbereiten" },
-  checkin:  { color: "#56b0bb", urgentColor: "#56b0bb", bg: "rgb(86 176 187 / 0.12)", Icon: Send,          label: "Check-in-Info" },
-  ntak:     { color: "#56b0bb", urgentColor: "#56b0bb", bg: "rgb(86 176 187 / 0.12)", Icon: ClipboardCheck, label: "Meldeschein" },
+  cleaning: { color: "#56b0bb", urgentColor: "#dc8460", bg: "rgb(86 176 187 / 0.12)", Icon: Sparkles,      label: "Čišćenje" },
+  payment:  { color: "#ddb055", urgentColor: "#e08060", bg: "rgb(217 171 78 / 0.12)", Icon: Banknote,      label: "Provjeriti plaćanje" },
+  key:      { color: "#56b0bb", urgentColor: "#56b0bb", bg: "rgb(86 176 187 / 0.12)", Icon: Key,           label: "Pripremiti ključeve" },
+  checkin:  { color: "#56b0bb", urgentColor: "#56b0bb", bg: "rgb(86 176 187 / 0.12)", Icon: Send,          label: "Info za prijavu" },
+  ntak:     { color: "#56b0bb", urgentColor: "#56b0bb", bg: "rgb(86 176 187 / 0.12)", Icon: ClipboardCheck, label: "Prijava gosta" },
 } as const;
 
 /* ── Arriving: apartment block with header ───────────────────────── */
