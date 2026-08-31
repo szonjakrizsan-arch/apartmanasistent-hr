@@ -27,8 +27,8 @@ export function AlertsScreen() {
   return (
     <div className="flex flex-col gap-5 pb-2">
       <SectionHeader
-        title="Benachrichtigungen"
-        subtitle={unread > 0 ? `${unread} ungelesen` : "Alles gelesen"}
+        title="Obavijesti"
+        subtitle={unread > 0 ? `${unread} nepročitanih` : "Sve pročitano"}
       />
       <ul className="flex flex-col gap-3">
         {alerts.map((alert) => {
