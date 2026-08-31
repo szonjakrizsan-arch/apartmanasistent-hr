@@ -204,7 +204,7 @@ function AddCustomTaskForm({ onAdd }: { onAdd: (label: string, recurrence: Custo
     if (mode === "date") {
       const clean = dateInput.trim().replace(/\.$/, "");
       if (!/^\d{4}\.\d{2}\.\d{2}$/.test(clean)) {
-        setDateError("Richtiges Format: 2026.06.08.");
+        setDateError("Ispravan format: 2026.06.08.");
         return;
       }
       onAdd(label.trim(), `date:${clean}` as CustomTaskRecurrence);
@@ -219,7 +219,7 @@ function AddCustomTaskForm({ onAdd }: { onAdd: (label: string, recurrence: Custo
       className="pressable flex w-full items-center gap-2 rounded-xl border border-dashed px-3 py-3 text-left"
       style={{ borderColor: "rgb(86 176 187 / 0.25)", color: "#56b0bb" }}>
       <Plus className="h-4 w-4" />
-      <span className="text-[13px] font-medium">Eigene Aufgabe hinzufügen</span>
+      <span className="text-[13px] font-medium">Dodaj vlastiti zadatak</span>
     </button>
   );
 
@@ -227,7 +227,7 @@ function AddCustomTaskForm({ onAdd }: { onAdd: (label: string, recurrence: Custo
     <div className="card-elevated flex flex-col gap-3 rounded-xl border p-4"
       style={{ borderColor: "rgb(86 176 187 / 0.25)" }}>
       <input type="text" value={label} onChange={(e) => setLabel(e.target.value)}
-        placeholder="Name der Aufgabe (z. B. Müllabfuhr)"
+        placeholder="Naziv zadatka (npr. odvoz smeća)"
         className="w-full rounded-lg border bg-transparent px-3 py-2 text-[13px] text-text-primary outline-none"
         style={{ borderColor: "rgb(86 176 187 / 0.25)" }} autoFocus />
       <div className="flex gap-2">
@@ -239,7 +239,7 @@ function AddCustomTaskForm({ onAdd }: { onAdd: (label: string, recurrence: Custo
               color: mode === m ? "#56b0bb" : "#6b7280",
               outline: `1px solid ${mode === m ? "rgb(86 176 187 / 0.30)" : "rgb(86 176 187 / 0.10)"}`,
             }}>
-            {m === "preset" ? "Wiederholung" : "Datum"}
+            {m === "preset" ? "Ponavljanje" : "Datum"}
           </button>
         ))}
       </div>
@@ -265,11 +265,11 @@ function AddCustomTaskForm({ onAdd }: { onAdd: (label: string, recurrence: Custo
         <button type="button" onClick={handleAdd}
           className="pressable flex-1 rounded-lg py-2 text-[13px] font-semibold"
           style={{ background: "rgb(86 176 187 / 0.18)", color: "#56b0bb" }}>
-          Hinzufügen
+          Dodaj
         </button>
         <button type="button" onClick={() => { setOpen(false); setDateError(""); }}
           className="pressable flex-1 rounded-lg py-2 text-[13px] font-semibold text-text-muted">
-          Abbrechen
+          Odustani
         </button>
       </div>
     </div>
