@@ -44,8 +44,8 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
      expired bookings are kept too, not just active ones. */
   const contactMap = new Map<string, Contact>();
 
-  /* Hilfstabelle: booking_id → Anzeigedaten der Buchung.
-     Zuerst aus den aktiven, dann aus den zukünftigen Buchungen befüllt. */
+  /* Pomoćna tablica: booking_id → prikazni podaci rezervacije.
+     Prvo se popunjava iz aktivnih, zatim iz budućih rezervacija. */
   const bookingMeta = new Map<string, { arrival: string; departure: string; apartment: string; year: string }>();
   for (const b of ical.bookings) {
     bookingMeta.set(b.id, {
@@ -58,14 +58,14 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
   for (const b of ical.futureBookings) {
     bookingMeta.set(b.id, {
       arrival:   b.arrival,
-      departure: `${b.nights} ${b.nights === 1 ? "Nacht" : "Nächte"}`,
+      departure: `${b.nights} ${b.nights === 1 ? "noć" : "noći"}`,
       apartment: b.apartment,
       year:      b._checkinRaw ? b._checkinRaw.slice(0, 4) : "",
     });
   }
 
-  /* Wir gehen alle gespeicherten detailState-Schlüssel durch —
-     so bleiben auch Gäste abgelaufener Buchungen sichtbar. */
+  /* Prolazimo kroz sve pohranjene detailState ključeve —
+     tako ostaju vidljivi i gosti isteklih rezervacija. */
   for (const [bookingId, detail] of Object.entries(detailStates)) {
     const name  = detail.contactName?.trim();
     const phone = detail.contactPhone?.trim();
@@ -81,10 +81,10 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
     if (meta) {
       contactMap.get(key)!.bookings.push(meta);
 } else {
-  /* Die Buchung ist nicht mehr im Feed — wir rekonstruieren sie aus der booking_id.
-     Es gibt zwei Formate:
-     1) "ical-Korvett::20260621::airbnb"   (mit Wohnungsname)
-     2) ein plattformeigenes ID-Format ohne Wohnungsname */
+  /* Rezervacija više nije u feedu — rekonstruiramo je iz booking_id.
+     Postoje dva formata:
+     1) "ical-Korvett::20260621::airbnb"   (s nazivom apartmana)
+     2) format ID-a specifičan za platformu, bez naziva apartmana */
   const stripped = bookingId.replace(/^ical-/, "");
 
   if (stripped.includes("::")) {
@@ -93,21 +93,21 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
     const year      = (parts[1] ?? "").slice(0, 4);
     if (apartment) {
       contactMap.get(key)!.bookings.push({
-        arrival:   "frühere Buchung",
+        arrival:   "ranija rezervacija",
         departure: "",
         apartment,
         year,
       });
     }
   } else if (stripped.includes("@")) {
-    /* Plattformeigene ID — der Name der Wohnung ist nicht enthalten,
-       aber das Jahr kann aus dem Datum ausgelesen werden. */
+    /* ID specifičan za platformu — naziv apartmana nije sadržan,
+       ali godina se može očitati iz datuma. */
     const match = stripped.match(/-(\d{8})-/);
     const year  = match ? match[1].slice(0, 4) : "";
     contactMap.get(key)!.bookings.push({
-      arrival:   "frühere Buchung",
+      arrival:   "ranija rezervacija",
       departure: "",
-      apartment: "Frühere Buchung",
+      apartment: "Ranija rezervacija",
       year,
     });
   }
@@ -115,7 +115,7 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
   }
 
   const guestContacts = Array.from(contactMap.values()).sort((a, b) =>
-    a.name.localeCompare(b.name, "de")
+    a.name.localeCompare(b.name, "hr")
   );
 
   const q = search.toLowerCase();
@@ -137,8 +137,8 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
   return (
     <div className="flex flex-col gap-5 pb-2">
       <SectionHeader
-        title="Kontakte"
-        subtitle={`${guestContacts.length} Gäste · ${manualContacts.length} Sonstige`}
+        title="Kontakti"
+        subtitle={`${guestContacts.length} gostiju · ${manualContacts.length} ostalih`}
       />
 
       {/* Search */}
@@ -148,18 +148,18 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Suche nach Name, Rolle, Telefon, E-Mail…"
+          placeholder="Pretraži po imenu, ulozi, telefonu, e-mailu…"
           className="w-full rounded-xl border bg-surface-raised py-2.5 pl-9 pr-4 text-[13px] text-text-primary outline-none"
           style={{ borderColor: "rgb(86 176 187 / 0.20)" }}
         />
       </div>
 
       {/* ── Eigene Kontakte (manual) ── */}
-      <section aria-label="Eigene Kontakte">
+      <section aria-label="Vlastiti kontakti">
         <div className="mb-3 flex items-center gap-2.5">
           <Briefcase className="h-3.5 w-3.5 shrink-0 text-text-muted" aria-hidden />
           <h2 className="text-[11px] font-bold uppercase tracking-widest text-text-muted">
-            Eigene Kontakte
+            Vlastiti kontakti
           </h2>
           <div className="flex-1 border-t border-dashed border-border-faint/50" aria-hidden />
         </div>
@@ -188,7 +188,7 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
                     <button type="button" onClick={() => deleteContact(c.id)}
                       className="pressable flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
                       style={{ color: "rgb(207 102 85 / 0.6)" }}
-                      aria-label={`${c.name} löschen`}>
+                      aria-label={`Obriši ${c.name}`}>
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
                   </div>
@@ -216,26 +216,26 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
 
         {showAdd ? (
           <div className="card-elevated rounded-2xl p-4 flex flex-col gap-3">
-            <p className="text-[13px] font-semibold text-text-primary">Neuer Kontakt</p>
+            <p className="text-[13px] font-semibold text-text-primary">Novi kontakt</p>
             <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)}
-              placeholder="Name (z. B. Max Mustermann)" className={inputCls} style={inputStyle} autoFocus />
+              placeholder="Ime (npr. Ivan Horvat)" className={inputCls} style={inputStyle} autoFocus />
             <input type="text" value={newRole} onChange={(e) => setNewRole(e.target.value)}
-              placeholder="Rolle (z. B. Gärtner, Reinigungskraft)" className={inputCls} style={inputStyle} />
+              placeholder="Uloga (npr. vrtlar, osoba za čišćenje)" className={inputCls} style={inputStyle} />
             <input type="tel" value={newPhone} onChange={(e) => setNewPhone(e.target.value)}
-              placeholder="Telefonnummer" className={inputCls} style={inputStyle} />
+              placeholder="Broj telefona" className={inputCls} style={inputStyle} />
             <input type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}
-              placeholder="E-Mail-Adresse (optional)" className={inputCls} style={inputStyle} />
+              placeholder="E-mail adresa (neobavezno)" className={inputCls} style={inputStyle} />
             <input type="text" value={newNote} onChange={(e) => setNewNote(e.target.value)}
-              placeholder="Notiz (optional)" className={inputCls} style={inputStyle} />
+              placeholder="Bilješka (neobavezno)" className={inputCls} style={inputStyle} />
             <div className="flex gap-2">
               <button type="button" onClick={handleAdd}
                 className="pressable flex-1 rounded-xl py-2.5 text-[13px] font-semibold"
                 style={{ background: "rgb(86 176 187 / 0.18)", color: "#56b0bb" }}>
-                Speichern
+                Spremi
               </button>
               <button type="button" onClick={() => setShowAdd(false)}
                 className="pressable flex-1 rounded-xl py-2.5 text-[13px] font-semibold text-text-muted">
-                Abbrechen
+                Odustani
               </button>
             </div>
           </div>
@@ -244,17 +244,17 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
             className="pressable flex w-full items-center gap-2 rounded-2xl border border-dashed px-4 py-3 text-left"
             style={{ borderColor: "rgb(86 176 187 / 0.25)", color: "#56b0bb" }}>
             <Plus className="h-4 w-4" />
-            <span className="text-[13px] font-medium">Kontakt hinzufügen (z. B. Reinigungskraft, Gärtner)</span>
+            <span className="text-[13px] font-medium">Dodaj kontakt (npr. osoba za čišćenje, vrtlar)</span>
           </button>
         )}
       </section>
 
       {/* ── Gäste ── */}
-      <section aria-label="Gästekontakte">
+      <section aria-label="Kontakti gostiju">
         <div className="mb-3 flex items-center gap-2.5">
           <User className="h-3.5 w-3.5 shrink-0 text-text-muted" aria-hidden />
           <h2 className="text-[11px] font-bold uppercase tracking-widest text-text-muted">
-            Gäste
+            Gosti
           </h2>
           <div className="flex-1 border-t border-dashed border-border-faint/50" aria-hidden />
         </div>
@@ -264,10 +264,10 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
             style={{ borderColor: "rgb(86 176 187 / 0.18)" }}>
             <User className="h-8 w-8 text-text-muted" />
             <p className="text-[13px] text-text-secondary">
-              {search ? "Keine Treffer." : "Noch kein gespeicherter Gast."}
+              {search ? "Nema rezultata." : "Još nema pohranjenog gosta."}
             </p>
             <p className="text-[11px] text-text-muted">
-              {!search && "Geben Sie die Gastdaten in den Buchungsdetails ein."}
+              {!search && "Unesite podatke o gostu u detaljima rezervacije."}
             </p>
           </div>
         ) : (
@@ -301,7 +301,7 @@ export function ContactsScreen({ appState, ical, userId }: ContactsScreenProps) 
                   {contact.bookings.length > 0 && (
                     <div className="mt-3 border-t pt-3" style={{ borderColor: "rgb(255 255 255 / 0.06)" }}>
                       <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-text-muted">
-                        Buchungen
+                        Rezervacije
                       </p>
                       <ul className="flex flex-col gap-1">
                         {contact.bookings.map((b, i) => (
