@@ -8,17 +8,17 @@ import { LegalScreen } from "./LegalScreen";
 import type { LegalDoc } from "./LegalScreen";
 
 const ACCENT_OPTIONS: { value: ApartmentAccent; label: string; color: string }[] = [
-  { value: "coral",    label: "Koralle",    color: "#dc8460" },
-  { value: "sage",     label: "Salbei",     color: "#60bc9e" },
-  { value: "sky",      label: "Himmelblau", color: "#6aa6cc" },
-  { value: "lavender", label: "Lavendel",   color: "#9c91c8" },
-  { value: "amber",    label: "Bernstein",  color: "#d9ab4e" },
+  { value: "coral",    label: "Koraljna",   color: "#dc8460" },
+  { value: "sage",     label: "Kadulja",    color: "#60bc9e" },
+  { value: "sky",      label: "Nebo-plava", color: "#6aa6cc" },
+  { value: "lavender", label: "Lavanda",    color: "#9c91c8" },
+  { value: "amber",    label: "Jantar",     color: "#d9ab4e" },
 ];
 
 const SOURCE_OPTIONS = [
   { value: "airbnb",      label: "Airbnb" },
   { value: "booking",     label: "Booking.com" },
-  { value: "google",      label: "Google Kalender" },
+  { value: "google",      label: "Google kalendar" },
   { value: "vrbo",        label: "VRBO" },
   { value: "tripadvisor", label: "TripAdvisor" },
   { value: "expedia",     label: "Expedia" },
@@ -74,12 +74,12 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
     setNewUrl(""); setNewSource("airbnb"); setAddingFeedFor(null);
   }
 
-  if (loading) return <p className="text-text-muted text-[13px]">Wird geladen...</p>;
+  if (loading) return <p className="text-text-muted text-[13px]">Učitavanje...</p>;
   if (legalDoc) return <LegalScreen doc={legalDoc} onBack={() => setLegalDoc(null)} />;
 
   return (
     <div className="flex flex-col gap-5 pb-2">
-      <SectionHeader title="Ferienwohnungen" subtitle={`${apartments.length} ${apartments.length === 1 ? "Ferienwohnung" : "Ferienwohnungen"}`} />
+      <SectionHeader title="Apartmani" subtitle={`${apartments.length} ${apartments.length === 1 ? "apartman" : "apartmana"}`} />
 
       {/* iCal-Hilfe-Button */}
       <button
@@ -95,8 +95,8 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
         <div className="flex items-center gap-3">
           <span className="text-2xl">📋</span>
           <div className="text-left">
-            <p className="text-[14px] font-semibold" style={{ color: "#7dd4dd" }}>Wie füge ich einen iCal-Feed hinzu?</p>
-            <p className="text-[12px] mt-0.5" style={{ color: "#C8D4D0" }}>Airbnb, Booking.com und weitere Plattformen</p>
+            <p className="text-[14px] font-semibold" style={{ color: "#7dd4dd" }}>Kako dodati iCal feed?</p>
+            <p className="text-[12px] mt-0.5" style={{ color: "#C8D4D0" }}>Airbnb, Booking.com i druge platforme</p>
           </div>
         </div>
         <span className="text-[20px]">→</span>
@@ -106,8 +106,8 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
       {apartments.length === 0 ? (
         <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed px-4 py-10 text-center"
           style={{ borderColor: "rgb(86 176 187 / 0.18)" }}>
-          <p className="text-[13px] text-text-secondary">Noch keine Ferienwohnung vorhanden.</p>
-          <p className="text-[11px] text-text-muted">Fügen Sie unten Ihre erste Ferienwohnung hinzu.</p>
+          <p className="text-[13px] text-text-secondary">Još nema dodanog apartmana.</p>
+          <p className="text-[11px] text-text-muted">Dodajte svoj prvi apartman ispod.</p>
         </div>
       ) : (
         <ul className="flex flex-col gap-3">
@@ -127,7 +127,7 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
                       {apt.name.slice(0, 2).toUpperCase()}
                     </span>
                     <span className="flex-1 text-[14px] font-semibold text-text-primary">{apt.name}</span>
-                    <span className="text-[11px] text-text-muted mr-2">{aptFeeds.length} {aptFeeds.length === 1 ? "Feed" : "Feeds"}</span>
+                    <span className="text-[11px] text-text-muted mr-2">{aptFeeds.length} {aptFeeds.length === 1 ? "feed" : "feeda"}</span>
                     <button type="button" onClick={() => setExpandedApt(isExpanded ? null : apt.id)}
                       className="pressable flex h-7 w-7 items-center justify-center rounded-lg transition-soft"
                       style={{ color: "#56b0bb" }}>
@@ -144,7 +144,7 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
                   {isExpanded && (
                     <div className="px-4 py-3 flex flex-col gap-2">
                       {aptFeeds.length === 0 && (
-                        <p className="text-[12px] text-text-muted">Noch kein iCal-Feed vorhanden.</p>
+                        <p className="text-[12px] text-text-muted">Još nema dodanog iCal feeda.</p>
                       )}
                       {aptFeeds.map((feed) => (
                         <div key={feed.id} className="flex items-center gap-2 rounded-xl border px-3 py-2"
@@ -182,11 +182,11 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
                             <button type="button" onClick={() => handleAddFeed(apt.id)}
                               className="pressable flex-1 rounded-lg py-2 text-[12px] font-semibold"
                               style={{ background: "rgb(86 176 187 / 0.18)", color: "#56b0bb" }}>
-                              Speichern
+                              Spremi
                             </button>
                             <button type="button" onClick={() => setAddingFeedFor(null)}
                               className="pressable flex-1 rounded-lg py-2 text-[12px] font-semibold text-text-muted">
-                              Abbrechen
+                              Odustani
                             </button>
                           </div>
                         </div>
@@ -195,7 +195,7 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
                           className="pressable flex items-center gap-2 rounded-xl border border-dashed px-3 py-2 text-left mt-1"
                           style={{ borderColor: "rgb(86 176 187 / 0.25)", color: "#56b0bb" }}>
                           <Plus className="h-3.5 w-3.5" />
-                          <span className="text-[12px] font-medium">iCal-Feed hinzufügen</span>
+                          <span className="text-[12px] font-medium">Dodaj iCal feed</span>
                         </button>
                       )}
                     </div>
@@ -210,9 +210,9 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
       {/* Add apartment form */}
       {showAddApt ? (
         <div className="card-elevated rounded-2xl p-4 flex flex-col gap-3">
-          <p className="text-[13px] font-semibold text-text-primary">Neue Ferienwohnung</p>
+          <p className="text-[13px] font-semibold text-text-primary">Novi apartman</p>
           <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)}
-            placeholder="Name der Ferienwohnung (z. B. Sonnenschein)"
+            placeholder="Naziv apartmana (npr. Sunčani kutak)"
             className="w-full rounded-xl border bg-transparent px-3 py-2.5 text-[13px] text-text-primary outline-none input-teal"
             style={{ borderColor: "rgb(86 176 187 / 0.25)" }} autoFocus />
           <div className="flex gap-2">
@@ -232,11 +232,11 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
             <button type="button" onClick={handleAddApartment}
               className="pressable flex-1 rounded-xl py-2.5 text-[13px] font-semibold"
               style={{ background: "rgb(86 176 187 / 0.18)", color: "#56b0bb" }}>
-              Hinzufügen
+              Dodaj
             </button>
             <button type="button" onClick={() => setShowAddApt(false)}
               className="pressable flex-1 rounded-xl py-2.5 text-[13px] font-semibold text-text-muted">
-              Abbrechen
+              Odustani
             </button>
           </div>
         </div>
@@ -245,20 +245,20 @@ export function ApartmentsScreen({ userId, shared, autoOpenAdd, onAutoOpenHandle
           className="pressable flex w-full items-center gap-2 rounded-2xl border border-dashed px-4 py-3.5 text-left"
           style={{ borderColor: "rgb(86 176 187 / 0.25)", color: "#56b0bb" }}>
           <Plus className="h-4 w-4" />
-          <span className="text-[13px] font-medium">Neue Ferienwohnung hinzufügen</span>
+          <span className="text-[13px] font-medium">Dodaj novi apartman</span>
         </button>
       )}
 
-      {/* Rechtliche Links */}
+      {/* Pravni linkovi */}
       <div className="mt-4 flex items-center justify-center gap-3 pb-2">
         <button type="button" onClick={() => setLegalDoc("terms")}
-          className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">AGB</button>
+          className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Opći uvjeti</button>
         <span className="text-[11px] text-text-muted" aria-hidden>·</span>
         <button type="button" onClick={() => setLegalDoc("privacy")}
-          className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Datenschutz</button>
+          className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Zaštita podataka</button>
         <span className="text-[11px] text-text-muted" aria-hidden>·</span>
         <button type="button" onClick={() => setLegalDoc("contact")}
-          className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Impressum</button>
+          className="text-[11px] text-text-muted hover:text-text-secondary transition-soft">Impresum</button>
       </div>
  {showHelpModal && <IcalHelpModal onClose={() => setShowHelpModal(false)} />}
     </div>
